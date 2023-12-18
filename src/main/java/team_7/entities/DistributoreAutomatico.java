@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "distributori_automatici")
 @DiscriminatorValue("dist-auto")
-public class DistributoreAutomatico extends Venditore {
+public class DistributoreAutomatico extends PuntoVendita {
     @Column(name = "in_servizio")
     private boolean inServizio = true;
 

@@ -26,7 +26,7 @@ public class Application {
         TesseraDao tesseraDao = new TesseraDao();
 
         Utente utente = new Utente("Mario", "Rossi", LocalDate.of(1990, 5, 15));
-        utenteDao.createUtente(utente);
+        /*utenteDao.createUtente(utente);
 //        Utente utenteRecuperato = utenteDao.getUtenteById(1);
         Utente utenteRecuperato = utenteDao.getUtenteById(1);
 
@@ -47,8 +47,7 @@ public class Application {
         bd.save(bus);
 
         Abbonamento treno = new Abbonamento(LocalDate.of(2023,3,28),544,TipoTratta.LUNGA,LocalDate.of(2024,3,27), StatoAbbonamento.ATTIVO,343,"annuale");
-        ad.save(treno);
-
+        ad.save(treno);*/
 
         em.close();
         emf.close();

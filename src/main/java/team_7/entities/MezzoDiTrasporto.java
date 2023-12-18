@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name= "mezzi_di_trasporto")
-public class MezzoDiTraporto {
+public class MezzoDiTrasporto {
     @Id
     @GeneratedValue
     private long id;
@@ -19,14 +19,14 @@ public class MezzoDiTraporto {
     @Column(name="in_servizio")
     private boolean inServizio = true;
     private int capienza;
-    @OneToMany(mappedBy = "mezzo")
-    List<Manutenzione> listaManutenzione;
+    @OneToMany(mappedBy = "mezzo",cascade = CascadeType.REMOVE)
+    List<Manutenzione> listaManutenzioni;
 
-    public MezzoDiTraporto(){
+    public MezzoDiTrasporto(){
 
     }
 
-    public MezzoDiTraporto(TipoMezzo tipoMezzo, LocalDate dataAcquisto) {
+    public MezzoDiTrasporto(TipoMezzo tipoMezzo, LocalDate dataAcquisto) {
         this.tipoMezzo = tipoMezzo;
         this.dataAcquisto = dataAcquisto;
         switch (tipoMezzo){
@@ -52,16 +52,19 @@ public class MezzoDiTraporto {
         return inServizio;
     }
 
-    public void setInServizio(boolean inServizio) {
-        this.inServizio = inServizio;
+    public void setInManutenzione() {
+        this.inServizio = false;
+    }
+    public void setInServizio() {
+        this.inServizio = true;
     }
 
     public int getCapienza() {
         return capienza;
     }
 
-    public List<Manutenzione> getListaManutenzione() {
-        return listaManutenzione;
+    public List<Manutenzione> getListaManutenzioni() {
+        return listaManutenzioni;
     }
 
     @Override

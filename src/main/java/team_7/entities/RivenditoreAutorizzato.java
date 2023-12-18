@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "rivenditore_autorizzato")
 @DiscriminatorValue("rivenditore")
-public class RivenditoreAutorizzato extends Venditore{
+public class RivenditoreAutorizzato extends PuntoVendita {
     @Column(name = "tipo_rivenditore")
     @Enumerated(EnumType.STRING)
     private TipoRivenditore tipoRivenditore;

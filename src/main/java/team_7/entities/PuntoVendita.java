@@ -7,18 +7,18 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="categoria")
 
-public abstract class Venditore {
+public abstract class PuntoVendita {
     @Id
     @GeneratedValue
     private long id;
     private String nome;
     private String località;
 
-    public Venditore() {
+    public PuntoVendita() {
 
     }
 
-    public Venditore(String nome, String località) {
+    public PuntoVendita(String nome, String località) {
         this.nome = nome;
         this.località = località;
     }
