@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c05a08c-41b4-4703-b7ea-bfeca6e3a258" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/TesseraDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/UtenteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Tessera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Utente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team_7/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +32,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2ZiKptgVrIt7RNNiTaQ4S9banR6" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,7 +43,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "momo-monday",
+    "git-widget-placeholder": "Fede-d1",
+    "last_opened_file_path": "C:/Users/oneco/Desktop/Java U2/settimana 3/venerdi/venerdiVero",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
