@@ -1,4 +1,39 @@
 package team_7.entities;
 
-public class Biglietto {
+import team_7.entities.enums.StatoBiglietto;
+import team_7.entities.enums.TipoTratta;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@DiscriminatorValue("biglietto")
+@Table(name = "biglietti")
+public class Biglietto extends TitoloDiViaggio {
+    @Column(name = "stato")
+    @Enumerated(EnumType.STRING)
+    private StatoBiglietto statoBiglietto = StatoBiglietto.NON_VIDIMATO;
+
+
+    public Biglietto(){}
+
+    public Biglietto(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta) {
+        super(data_emissione, idVenditore, tipoTratta);
+
+    }
+
+    public StatoBiglietto getStatoBiglietto() {
+        return statoBiglietto;
+    }
+
+    public void setStatoBiglietto(StatoBiglietto statoBiglietto) {
+        this.statoBiglietto = statoBiglietto;
+    }
+
+    @Override
+    public String toString() {
+        return "Biglietto{" +
+                "statoBiglietto=" + statoBiglietto +
+                '}';
+    }
 }
