@@ -5,10 +5,10 @@ import team_7.entities.PuntoVendita;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class VenditoreDAO {
+public class PuntoVenditaDAO {
     private final EntityManager em;
 
-    public VenditoreDAO(EntityManager em) {
+    public PuntoVenditaDAO(EntityManager em) {
         this.em = em;
     }
 

@@ -28,6 +28,7 @@ public class Manutenzione {
         this.mezzo = mezzo;
         this.dataFine = dataInizio.plusDays(30);
         mezzo.setInManutenzione();
+        if(dataFine.isBefore(LocalDate.now()) || dataFine.isEqual(LocalDate.now())) this.mezzo.setInServizio();
     }
 
     public long getId() {
