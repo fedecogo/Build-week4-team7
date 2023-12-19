@@ -1,6 +1,7 @@
 package team_7.entities;
 
 import team_7.entities.enums.StatoAbbonamento;
+import team_7.entities.enums.TipoAbbonamento;
 import team_7.entities.enums.TipoTratta;
 
 import javax.persistence.*;
@@ -15,6 +16,8 @@ import java.util.List;
 public class Abbonamento extends TitoloDiViaggio{
     @Column(name = "data_fine")
     private LocalDate dataFine;
+    @Column(name="tipo_abbonamento")
+    private TipoAbbonamento tipoAbbonamento;
     @Column(name = "stato_abbonamento")
     @Enumerated (EnumType.STRING)
     private StatoAbbonamento statoAbbonamento;
@@ -31,12 +34,24 @@ public class Abbonamento extends TitoloDiViaggio{
 
 
     public Abbonamento(){}
-    public Abbonamento(LocalDate data_emissione, PuntoVendita puntoVendita, StatoAbbonamento statoAbbonamento, Tessera tesseraUtente , Tratta tratta) {
-        super(data_emissione, puntoVendita);
-        this.dataFine = data_emissione.plusYears(1);
-        this.statoAbbonamento = statoAbbonamento;
+    public Abbonamento(LocalDate dataEmissione, PuntoVendita puntoVendita, Tessera tesseraUtente , Tratta tratta, TipoAbbonamento tipoAbbonamento) {
+        super(dataEmissione, puntoVendita);
+        this.tipoAbbonamento = tipoAbbonamento;
+        switch (tipoAbbonamento){
+            case SETTIMANALE -> this.dataFine = dataEmissione.plusWeeks(1);
+            case MENSILE -> this.dataFine = dataEmissione.plusMonths(1);
+            case SEMESTRALE -> this.dataFine = dataEmissione.plusMonths(6);
+        }
+        if(dataFine.isAfter(tesseraUtente.getDataScadenza())){
+            System.err.println("Si prega di rinnovare la tessera utente");
+        }
+        if(LocalDate.now().isAfter(dataFine)){
+            this.statoAbbonamento = StatoAbbonamento.SCADUTO;
+        } else {
+            this.statoAbbonamento = StatoAbbonamento.ATTIVO;
+        }
         this.tesseraUtente = tesseraUtente;
-        this.durataAbbonamento = Duration.between(data_emissione,dataFine);
+        this.durataAbbonamento = Duration.between(dataEmissione,dataFine);
         this.tratta = tratta;
     }
 
@@ -86,6 +101,10 @@ public class Abbonamento extends TitoloDiViaggio{
 
     public List<Viaggio> getListaViaggi() {
         return listaViaggi;
+    }
+
+    public TipoAbbonamento getTipoAbbonamento() {
+        return tipoAbbonamento;
     }
 
     @Override

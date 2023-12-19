@@ -29,9 +29,9 @@ public class Tessera {
     public Tessera(){
 
     }
-    public Tessera( LocalDate data_emissione, LocalDate data_scadenza, Utente utente){
-        this.dataEmissione = data_emissione;
-        this.dataScadenza = data_scadenza;
+    public Tessera( LocalDate dataEmissione, Utente utente){
+        this.dataEmissione = dataEmissione;
+        this.dataScadenza = dataEmissione.plusYears(1);
         this.utente = utente;
     }
 
@@ -55,22 +55,6 @@ public class Tessera {
 
     public LocalDate getDataScadenza() {
         return dataScadenza;
-    }
-
-    public LocalDate getData_emissione() {
-        return dataEmissione;
-    }
-
-    public void setData_emissione(LocalDate data_emissione) {
-        this.dataEmissione = data_emissione;
-    }
-
-    public LocalDate getData_scadenza() {
-        return dataScadenza;
-    }
-
-    public void setData_scadenza(LocalDate data_scadenza) {
-        this.dataScadenza = data_scadenza;
     }
 
     @Override
