@@ -28,7 +28,8 @@ public class Tratta {
     private TipoTratta tipoTratta;
     @OneToMany(mappedBy = "tratta")
     private List<Viaggio> listaDiViaggi;
-
+    @OneToMany(mappedBy = "tratta")
+    private List<Abbonamento> listaAbbonamenti;
     public Tratta(){}
     public Tratta(Capolinea partenza, Capolinea arrivo, Duration durataMedia) {
         this.partenza = partenza;

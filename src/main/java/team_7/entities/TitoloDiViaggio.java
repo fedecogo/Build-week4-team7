@@ -18,14 +18,12 @@ public abstract class TitoloDiViaggio {
     @ManyToOne
     @JoinColumn(name = "id_punto_vendita", nullable = false)
     private PuntoVendita puntoVendita;
-    @Enumerated(EnumType.STRING)
-    private TipoTratta tipoTratta;
+
 
     public TitoloDiViaggio(){}
-    public TitoloDiViaggio(LocalDate data_emissione, TipoTratta tipoTratta,PuntoVendita puntoVendita) {
+    public TitoloDiViaggio(LocalDate data_emissione, PuntoVendita puntoVendita) {
         this.data_emissione = data_emissione;
         this.puntoVendita = puntoVendita;
-        this.tipoTratta = tipoTratta;
     }
 
     public long getId() {
@@ -48,13 +46,7 @@ public abstract class TitoloDiViaggio {
         this.puntoVendita = puntoVendita;
     }
 
-    public TipoTratta getTipoTratta() {
-        return tipoTratta;
-    }
 
-    public void setTipoTratta(TipoTratta tipoTratta) {
-        this.tipoTratta = tipoTratta;
-    }
 
     @Override
     public String toString() {
@@ -62,7 +54,6 @@ public abstract class TitoloDiViaggio {
                 "id=" + id +
                 ", data_emissione=" + data_emissione +
                 ", idVenditore=" + puntoVendita.getId() +
-                ", tipoTratta=" + tipoTratta +
                 '}';
     }
 }

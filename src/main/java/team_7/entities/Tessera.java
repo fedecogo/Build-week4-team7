@@ -1,9 +1,11 @@
 package team_7.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "tessera")
+@Table(name = "tessere")
 public class Tessera {
     //attributi
 
@@ -11,8 +13,13 @@ public class Tessera {
     @Id
     @GeneratedValue
     private long id_tessera;
-    private LocalDate data_emissione;
-    private LocalDate data_scadenza;
+    @Column(name = "data_emissione")
+    private LocalDate dataEmissione;
+    @Column(name = "data_scadenza")
+    private LocalDate dataScadenza;
+    @OneToMany(mappedBy = "tesseraUtente")
+    private List<Abbonamento> listaDiAbbonamenti = new ArrayList<>();
+
     @OneToOne
     @JoinColumn(name = "id_utente", nullable = false)
     private Utente utente;
@@ -23,8 +30,8 @@ public class Tessera {
 
     }
     public Tessera( LocalDate data_emissione, LocalDate data_scadenza, Utente utente){
-        this.data_emissione = data_emissione;
-        this.data_scadenza = data_scadenza;
+        this.dataEmissione = data_emissione;
+        this.dataScadenza = data_scadenza;
         this.utente = utente;
     }
 
@@ -34,20 +41,47 @@ public class Tessera {
         return id_tessera;
     }
 
+    public List<Abbonamento> getListaDiAbbonamenti() {
+        return listaDiAbbonamenti;
+    }
+
+    public LocalDate getDataEmissione() {
+        return dataEmissione;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public LocalDate getDataScadenza() {
+        return dataScadenza;
+    }
+
     public LocalDate getData_emissione() {
-        return data_emissione;
+        return dataEmissione;
     }
 
     public void setData_emissione(LocalDate data_emissione) {
-        this.data_emissione = data_emissione;
+        this.dataEmissione = data_emissione;
     }
 
     public LocalDate getData_scadenza() {
-        return data_scadenza;
+        return dataScadenza;
     }
 
     public void setData_scadenza(LocalDate data_scadenza) {
-        this.data_scadenza = data_scadenza;
+        this.dataScadenza = data_scadenza;
     }
 
+    @Override
+    public String toString() {
+        return "Tessera{" +
+                "id_tessera=" + id_tessera +
+                ", dataEmissione=" + dataEmissione +
+                ", dataScadenza=" + dataScadenza +
+                ", listaDiAbbonamenti=" + listaDiAbbonamenti +
+                ", utente=" + utente +
+                '}';
+    }
 }
+

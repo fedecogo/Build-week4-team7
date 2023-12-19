@@ -12,6 +12,8 @@ public class Biglietto extends TitoloDiViaggio {
     @Column(name = "stato")
     @Enumerated(EnumType.STRING)
     private StatoBiglietto statoBiglietto = StatoBiglietto.NON_VIDIMATO;
+    @Enumerated(EnumType.STRING)
+    private TipoTratta tipoTratta;
 
 
     @OneToOne(mappedBy = "biglietto")
@@ -20,10 +22,25 @@ public class Biglietto extends TitoloDiViaggio {
 
     public Biglietto(){}
 
-    public Biglietto(LocalDate data_emissione, TipoTratta tipoTratta, PuntoVendita puntoVendita) {
-        super(data_emissione, tipoTratta, puntoVendita);
+    public Biglietto(LocalDate data_emissione,PuntoVendita puntoVendita,TipoTratta tipoTratta) {
+        super(data_emissione,puntoVendita);
+        this.tipoTratta = tipoTratta;
 
     }
+
+    public TipoTratta getTipoTratta() {
+        return tipoTratta;
+    }
+
+    public void setTipoTratta(TipoTratta tipoTratta) {
+        this.tipoTratta = tipoTratta;
+    }
+
+    public Vidimazione getVidimazione() {
+        return vidimazione;
+    }
+
+
 
     public StatoBiglietto getStatoBiglietto() {
         return statoBiglietto;
@@ -37,6 +54,8 @@ public class Biglietto extends TitoloDiViaggio {
     public String toString() {
         return "Biglietto{" +
                 "statoBiglietto=" + statoBiglietto +
+                ", tipoTratta=" + tipoTratta +
+                ", vidimazione=" + vidimazione +
                 '}';
     }
 }

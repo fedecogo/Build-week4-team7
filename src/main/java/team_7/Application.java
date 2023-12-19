@@ -25,7 +25,7 @@ public class Application {
         UtenteDao utenteDao = new UtenteDao();
         TesseraDao tesseraDao = new TesseraDao();
 
-        Utente utente = new Utente("Mario", "Rossi", LocalDate.of(1990, 5, 15));
+        Utente utente = new Utente("trio", "Rossi", LocalDate.of(1990, 5, 15));
         /*utenteDao.createUtente(utente);
 //        Utente utenteRecuperato = utenteDao.getUtenteById(1);
         Utente utenteRecuperato = utenteDao.getUtenteById(1);
