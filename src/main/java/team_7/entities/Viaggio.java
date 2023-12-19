@@ -3,6 +3,7 @@ package team_7.entities;
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "viaggi")
@@ -25,6 +26,9 @@ public class Viaggio {
     @ManyToOne
     @JoinColumn(name = "id_tratta", nullable = false)
     private Tratta tratta;
+
+    @OneToMany(mappedBy = "viaggio")
+    private List<Vidimazione> listaDiVidimazioni;
 
     public Viaggio() {
     }
@@ -71,6 +75,9 @@ public class Viaggio {
 
     public void setNumeroPasseggeri(int numeroPasseggeri) {
         this.numeroPasseggeri = numeroPasseggeri;
+    }
+    public void aggiornaNumeroPasseggeri(){
+        this.numeroPasseggeri = listaDiVidimazioni.size();
     }
 
     public MezzoDiTrasporto getMezzo() {

@@ -15,6 +15,10 @@ public class Biglietto extends TitoloDiViaggio {
     private StatoBiglietto statoBiglietto = StatoBiglietto.NON_VIDIMATO;
 
 
+    @OneToOne(mappedBy = "biglietto")
+    private Vidimazione vidimazione;
+
+
     public Biglietto(){}
 
     public Biglietto(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta) {
