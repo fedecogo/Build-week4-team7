@@ -11,11 +11,14 @@ import team_7.entities.Abbonamento;
 import team_7.entities.Biglietto;
 import team_7.entities.enums.StatoAbbonamento;
 import team_7.entities.enums.TipoTratta;
+import team_7.functionalities.DateParser;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
@@ -48,7 +51,21 @@ public class Application {
 
         Abbonamento treno = new Abbonamento(LocalDate.of(2023,3,28),544,TipoTratta.LUNGA,LocalDate.of(2024,3,27), StatoAbbonamento.ATTIVO,343,"annuale");
         ad.save(treno);*/
-
+        Scanner sc = new Scanner(System.in);
+        /*System.out.println("Inserisci nome");
+        String nome = sc.nextLine();
+        System.out.println("Inserisci cognome");
+        String cognome = sc.nextLine();
+        System.out.println("Inserisci data di nascita");
+        String dataStringa = sc.nextLine();
+        LocalDate dataNascita = DateParser.parseDateForItaly(dataStringa);
+        Utente u1 = new Utente(nome,cognome,dataNascita);
+        System.out.println("benvenuto"+u1);
+        utenteDao.createUtente(u1);*/
+        System.out.println("Ciao inserisci id utente");
+        long idUt = Long.parseLong(sc.nextLine());
+        Utente userFromDB = utenteDao.getUtenteById(idUt);
+        System.out.println("Benvenuto!"+userFromDB);
         em.close();
         emf.close();
     }

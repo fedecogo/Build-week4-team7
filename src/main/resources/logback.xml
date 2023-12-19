@@ -1,0 +1,18 @@
+<configuration>
+    <!--QUESTO XML CI SERVE PER FILTRARE I LOG CON CRITERIO ERROR-->
+    <!--ALTRIMENTI LA CONSOLE SAREBBE INTASATA DI LOG DI DEBUG-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
