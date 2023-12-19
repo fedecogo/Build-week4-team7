@@ -1,31 +1,32 @@
 package team_7.dao;
 
 import team_7.entities.Tratta;
+import team_7.entities.Viaggio;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class TrattaDAO {
+public class ViaggioDAO {
     private final EntityManager em;
 
-    public TrattaDAO(EntityManager em) {
+    public ViaggioDAO(EntityManager em) {
         this.em = em;
     }
 
-    public void save(Tratta tratta){
+    public void save(Viaggio viaggio){
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.persist(tratta);
+        em.persist(viaggio);
         transaction.commit();
-        System.out.println("La tratta da "+tratta.getPartenza()+ " a " + tratta.getArrivo()+ " è stata correttamente aggiunta.");
+        System.out.println("Il viaggio n° " + viaggio.getId() + " è stato correttamente registrato");
     }
 
-    public Tratta findById (long id){
-        Tratta found = null;
+    public Viaggio findById (long id){
+        Viaggio found = null;
         try{
-            found = em.find(Tratta.class, id);
+            found = em.find(Viaggio.class, id);
             if(found == null){
-                throw new IllegalArgumentException("La tratta con id " + id + " non è stata trovata!");
+                throw new IllegalArgumentException("Il viaggio con id " + id + " non è stato trovato!");
             }
         }catch ( IllegalArgumentException e){
             System.err.println(e.getMessage());
@@ -34,16 +35,16 @@ public class TrattaDAO {
     }
 
     public void deleteById (long id){
-        Tratta found = this.findById(id);
+        Viaggio found = this.findById(id);
         EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
             em.remove(found);
             transaction.commit();
-            System.out.println("L'oggetto con tratta da " + found.getPartenza()+ " a " + found.getArrivo() + " è stato eliminato correttamente!");
+            System.out.println("Il viaggio n°" + id + " è stato correttamente rimosso");
         } catch (NullPointerException | IllegalArgumentException e){
-            System.err.println("La tratta con id " + id + " non è stata trovata!");
+            System.err.println("Il viaggio con id" + id + " non è stato trovato!");
         }
     }
 }

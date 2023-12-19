@@ -20,10 +20,11 @@ public class MezzoDiTrasporto {
     private boolean inServizio = true;
     private int capienza;
     @OneToMany(mappedBy = "mezzo",cascade = CascadeType.REMOVE)
-    List<Manutenzione> listaManutenzioni;
+    private List<Manutenzione> listaManutenzioni;
+    @OneToMany(mappedBy = "mezzo")
+    private List <Viaggio> listaDiViaggi;
 
     public MezzoDiTrasporto(){
-
     }
 
     public MezzoDiTrasporto(TipoMezzo tipoMezzo, LocalDate dataAcquisto) {
