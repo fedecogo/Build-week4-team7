@@ -5,6 +5,7 @@ import team_7.entities.enums.TipoTratta;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.util.List;
 
 
 @Entity
@@ -13,14 +14,20 @@ public class Tratta {
     @Id
     @GeneratedValue
     private long id;
+    @Enumerated(EnumType.STRING)
 
     private Capolinea partenza;
+    @Enumerated(EnumType.STRING)
+
     private Capolinea arrivo;
     @Column(name = "durata_media")
     private Duration durataMedia;
+    @Enumerated(EnumType.STRING)
+
     @Column(name = "tipo_tratta")
     private TipoTratta tipoTratta;
-
+    @OneToMany(mappedBy = "tratta")
+    private List<Viaggio> listaDiViaggi;
 
     public Tratta(){}
     public Tratta(Capolinea partenza, Capolinea arrivo, Duration durataMedia) {
