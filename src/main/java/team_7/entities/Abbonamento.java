@@ -18,17 +18,15 @@ public class Abbonamento extends TitoloDiViaggio{
     private StatoAbbonamento statoAbbonamento;
     @Column(name="tessera_utente")
     private long tesseraUtente;
-    @Column(name = "durata_abbonamento")
-    private String durataAbbonamento;
+
 
 
     public Abbonamento(){}
-    public Abbonamento(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta, LocalDate dataFine, StatoAbbonamento statoAbbonamento, long tesseraUtente, String durataAbbonamento) {
+    public Abbonamento(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta, StatoAbbonamento statoAbbonamento, long tesseraUtente) {
         super(data_emissione, idVenditore, tipoTratta);
-        this.dataFine = dataFine;
+        this.dataFine = data_emissione.plusYears(1);
         this.statoAbbonamento = statoAbbonamento;
         this.tesseraUtente = tesseraUtente;
-        this.durataAbbonamento = durataAbbonamento;
     }
 
     public LocalDate getDataFine() {
