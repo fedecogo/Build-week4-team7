@@ -4,7 +4,10 @@ import team_7.entities.enums.StatoAbbonamento;
 import team_7.entities.enums.TipoTratta;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("abbonamento")
@@ -18,15 +21,19 @@ public class Abbonamento extends TitoloDiViaggio{
     private StatoAbbonamento statoAbbonamento;
     @Column(name="tessera_utente")
     private long tesseraUtente;
-
+    @Column(name="durata_abbonamento")
+    private Duration durataAbbonamento;
+    @ManyToMany(mappedBy="listaAbbonamenti")
+    private List<Viaggio> listaViaggi = new ArrayList<Viaggio>();
 
 
     public Abbonamento(){}
-    public Abbonamento(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta, StatoAbbonamento statoAbbonamento, long tesseraUtente) {
+    public Abbonamento(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta, StatoAbbonamento statoAbbonamento, long tesseraUtente ) {
         super(data_emissione, idVenditore, tipoTratta);
         this.dataFine = data_emissione.plusYears(1);
         this.statoAbbonamento = statoAbbonamento;
         this.tesseraUtente = tesseraUtente;
+        this.durataAbbonamento = Duration.between(data_emissione,dataFine);
     }
 
     public LocalDate getDataFine() {
@@ -53,21 +60,25 @@ public class Abbonamento extends TitoloDiViaggio{
         this.tesseraUtente = tesseraUtente;
     }
 
-    public String getDurataAbbonamento() {
+    public Duration getDurataAbbonamento() {
         return durataAbbonamento;
     }
 
-    public void setDurataAbbonamento(String durataAbbonamento) {
+    public void setDurataAbbonamento(Duration durataAbbonamento) {
         this.durataAbbonamento = durataAbbonamento;
     }
 
+    public Duration getDurataResidua() {
+     return Duration.between(LocalDate.now(), dataFine)  ;
+    }
     @Override
     public String toString() {
         return "Abbonamento{" +
                 "dataFine=" + dataFine +
                 ", statoAbbonamento=" + statoAbbonamento +
                 ", tesseraUtente=" + tesseraUtente +
-                ", durataAbbonamento='" + durataAbbonamento + '\'' +
+                ", durataAbbonamento='" + durataAbbonamento  +
+                ", durata residua =" + getDurataResidua()  +'\'' +
                 '}';
     }
 }

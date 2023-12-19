@@ -3,6 +3,7 @@ package team_7.entities;
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,15 @@ public class Viaggio {
 
     @OneToMany(mappedBy = "viaggio")
     private List<Vidimazione> listaDiVidimazioni;
+
+    @ManyToMany
+    @JoinTable(
+          name =  "viaggi_abbonamenti",
+            joinColumns = @JoinColumn(name = "id_viaggio"),
+            inverseJoinColumns = @JoinColumn(name = "id_abbonamneto")
+            )
+    private List<Abbonamento> listaAbbonamenti = new ArrayList<Abbonamento>();
+
 
     public Viaggio() {
     }
