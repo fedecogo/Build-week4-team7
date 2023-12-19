@@ -10,6 +10,7 @@ import team_7.dao.BigliettoDAO;
 import team_7.entities.Abbonamento;
 import team_7.entities.Biglietto;
 import team_7.entities.enums.StatoAbbonamento;
+import team_7.entities.enums.TipoAbbonamento;
 import team_7.entities.enums.TipoTratta;
 import team_7.functionalities.DateParser;
 
@@ -24,19 +25,46 @@ public class Application {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("galileo_express");
         EntityManager em = emf.createEntityManager();
+        Scanner sc = new Scanner(System.in);
 
         UtenteDao utenteDao = new UtenteDao();
         TesseraDao tesseraDao = new TesseraDao();
 
-        Utente utente = new Utente("trio", "Rossi", LocalDate.of(1990, 5, 15));
-        /*utenteDao.createUtente(utente);
-//        Utente utenteRecuperato = utenteDao.getUtenteById(1);
-        Utente utenteRecuperato = utenteDao.getUtenteById(1);
+        System.out.println("Inserisci i tuoi dati e registrati:");
+        System.out.print("Nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Cognome: ");
+        String cognome = sc.nextLine();
+        System.out.print("Data di nascita : ");
+        String dataStringa = sc.nextLine();
+        LocalDate dataNascita = DateParser.parseDateForItaly(dataStringa);
+        Utente utenteCreato = new Utente(nome, cognome, dataNascita);
+        utenteDao.createUtente(utenteCreato);
+        System.out.println("Benvenuto " + utenteCreato.getNome() + "! Sei stato registrato con successo.");
 
-        Tessera tessera = new Tessera( LocalDate.of(2002,03,03) , LocalDate.of(2002,03,03) , utenteRecuperato);
-        tesseraDao.createTessera(tessera);
 
-        List<Tessera> tessereUtente = tesseraDao.getTessereByUtente(utenteRecuperato);
+        System.out.print("Vuoi creare una tessera? (si/no): ");
+        String risposta = sc.nextLine();
+
+        if (risposta.toLowerCase().equals("si")) {
+            LocalDate dataEmissione = LocalDate.now();
+            Tessera tessera = new Tessera(dataEmissione, utenteCreato);
+            tesseraDao.createTessera(tessera);
+            System.out.println("Grande " + utenteCreato.getNome() + "!! hai creato la tua tessera con id: " + tessera.getId_tessera());
+
+
+        System.out.println("Scegli il tipo di abbonamento che vuoi creare:");
+        for (TipoAbbonamento tipo : TipoAbbonamento.values()) {
+            System.out.println(tipo.name());
+        }
+//DA FINIREEEEEEEEEEEEEEEEEE
+        } else {
+            System.out.println("Hai scelto di non creare una tessera. Fine del processo.");
+        }
+
+
+
+ /*              List<Tessera> tessereUtente = tesseraDao.getTessereByUtente(utenteRecuperato);
 
 
         System.out.println("Utente: " + utenteRecuperato);
@@ -51,7 +79,7 @@ public class Application {
 
         Abbonamento treno = new Abbonamento(LocalDate.of(2023,3,28),544,TipoTratta.LUNGA,LocalDate.of(2024,3,27), StatoAbbonamento.ATTIVO,343,"annuale");
         ad.save(treno);*/
-        Scanner sc = new Scanner(System.in);
+
         /*System.out.println("Inserisci nome");
         String nome = sc.nextLine();
         System.out.println("Inserisci cognome");
@@ -61,11 +89,14 @@ public class Application {
         LocalDate dataNascita = DateParser.parseDateForItaly(dataStringa);
         Utente u1 = new Utente(nome,cognome,dataNascita);
         System.out.println("benvenuto"+u1);
-        utenteDao.createUtente(u1);*/
+        utenteDao.createUtente(u1);
         System.out.println("Ciao inserisci id utente");
         long idUt = Long.parseLong(sc.nextLine());
         Utente userFromDB = utenteDao.getUtenteById(idUt);
-        System.out.println("Benvenuto!"+userFromDB);
+        System.out.println("Benvenuto!"+userFromDB);*/
+
+
+
         em.close();
         emf.close();
     }
