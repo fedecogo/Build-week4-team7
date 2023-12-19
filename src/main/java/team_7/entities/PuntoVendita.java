@@ -1,9 +1,11 @@
 package team_7.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "venditori")
+@Table(name = "punto_vendita")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="categoria")
 
@@ -13,6 +15,8 @@ public abstract class PuntoVendita {
     private long id;
     private String nome;
     private String località;
+    @OneToMany(mappedBy = "puntoVendita")
+    private List<TitoloDiViaggio> listaTitoliDiViaggioEmessi;
 
     public PuntoVendita() {
 

@@ -7,24 +7,24 @@ import java.time.LocalDate;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipologia")
-@Table(name = "titoli_di_viaggio")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class TitoloDiViaggio {
     @Id
     @GeneratedValue
     private long id;
     @Column(name = "data_emissione")
     private LocalDate data_emissione;
-    @Column(name = "id_venditore")
-    private long idVenditore;
+
+    @ManyToOne
+    @JoinColumn(name = "id_punto_vendita", nullable = false)
+    private PuntoVendita puntoVendita;
     @Enumerated(EnumType.STRING)
     private TipoTratta tipoTratta;
 
     public TitoloDiViaggio(){}
-    public TitoloDiViaggio(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta) {
+    public TitoloDiViaggio(LocalDate data_emissione, TipoTratta tipoTratta,PuntoVendita puntoVendita) {
         this.data_emissione = data_emissione;
-        this.idVenditore = idVenditore;
+        this.puntoVendita = puntoVendita;
         this.tipoTratta = tipoTratta;
     }
 
@@ -40,12 +40,12 @@ public abstract class TitoloDiViaggio {
         this.data_emissione = data_emissione;
     }
 
-    public long getIdVenditore() {
-        return idVenditore;
+    public PuntoVendita getPuntoVendita() {
+        return puntoVendita;
     }
 
-    public void setIdVenditore(long idVenditore) {
-        this.idVenditore = idVenditore;
+    public void setPuntoVendita(PuntoVendita puntoVendita) {
+        this.puntoVendita = puntoVendita;
     }
 
     public TipoTratta getTipoTratta() {
@@ -61,7 +61,7 @@ public abstract class TitoloDiViaggio {
         return "TitoloDiViaggio{" +
                 "id=" + id +
                 ", data_emissione=" + data_emissione +
-                ", idVenditore=" + idVenditore +
+                ", idVenditore=" + puntoVendita.getId() +
                 ", tipoTratta=" + tipoTratta +
                 '}';
     }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("abbonamento")
 @Table(name = "abbonamenti")
 
 public class Abbonamento extends TitoloDiViaggio{
@@ -28,8 +27,8 @@ public class Abbonamento extends TitoloDiViaggio{
 
 
     public Abbonamento(){}
-    public Abbonamento(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta, StatoAbbonamento statoAbbonamento, long tesseraUtente ) {
-        super(data_emissione, idVenditore, tipoTratta);
+    public Abbonamento(LocalDate data_emissione, TipoTratta tipoTratta, PuntoVendita puntoVendita, StatoAbbonamento statoAbbonamento, long tesseraUtente ) {
+        super(data_emissione, tipoTratta, puntoVendita);
         this.dataFine = data_emissione.plusYears(1);
         this.statoAbbonamento = statoAbbonamento;
         this.tesseraUtente = tesseraUtente;

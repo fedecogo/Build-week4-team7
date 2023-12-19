@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("biglietto")
 @Table(name = "biglietti")
 public class Biglietto extends TitoloDiViaggio {
     @Column(name = "stato")
@@ -21,8 +20,8 @@ public class Biglietto extends TitoloDiViaggio {
 
     public Biglietto(){}
 
-    public Biglietto(LocalDate data_emissione, long idVenditore, TipoTratta tipoTratta) {
-        super(data_emissione, idVenditore, tipoTratta);
+    public Biglietto(LocalDate data_emissione, TipoTratta tipoTratta, PuntoVendita puntoVendita) {
+        super(data_emissione, tipoTratta, puntoVendita);
 
     }
 
