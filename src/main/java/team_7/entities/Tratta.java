@@ -5,6 +5,7 @@ import team_7.entities.enums.TipoTratta;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,9 +28,9 @@ public class Tratta {
     @Column(name = "tipo_tratta")
     private TipoTratta tipoTratta;
     @OneToMany(mappedBy = "tratta")
-    private List<Viaggio> listaDiViaggi;
+    private List<Viaggio> listaDiViaggi = new ArrayList<>();;
     @OneToMany(mappedBy = "tratta")
-    private List<Abbonamento> listaAbbonamenti;
+    private List<Abbonamento> listaAbbonamenti = new ArrayList<>();;
     public Tratta(){}
     public Tratta(Capolinea partenza, Capolinea arrivo, Duration durataMedia) {
         this.partenza = partenza;
@@ -67,6 +68,14 @@ public class Tratta {
 
     public TipoTratta getTipoTratta() {
         return tipoTratta;
+    }
+
+    public List<Viaggio> getListaDiViaggi() {
+        return listaDiViaggi;
+    }
+
+    public List<Abbonamento> getListaAbbonamenti() {
+        return listaAbbonamenti;
     }
 
     @Override

@@ -16,7 +16,7 @@ public abstract class PuntoVendita {
     private String nome;
     private String località;
     @OneToMany(mappedBy = "puntoVendita")
-    private List<TitoloDiViaggio> listaTitoliDiViaggioEmessi;
+    private List<TitoloDiViaggio> listaTitoliDiViaggioEmessi = new ArrayList<>();
 
     public PuntoVendita() {
 
@@ -45,6 +45,10 @@ public abstract class PuntoVendita {
 
     public void setLocalità(String località) {
         this.località = località;
+    }
+
+    public List<TitoloDiViaggio> getListaTitoliDiViaggioEmessi() {
+        return listaTitoliDiViaggioEmessi;
     }
 
     @Override

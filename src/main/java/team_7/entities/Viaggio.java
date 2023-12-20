@@ -29,13 +29,13 @@ public class Viaggio {
     private Tratta tratta;
 
     @OneToMany(mappedBy = "viaggio")
-    private List<Vidimazione> listaDiVidimazioni;
+    private List<Vidimazione> listaDiVidimazioni = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
           name =  "viaggi_abbonamenti",
             joinColumns = @JoinColumn(name = "id_viaggio"),
-            inverseJoinColumns = @JoinColumn(name = "id_abbonamneto")
+            inverseJoinColumns = @JoinColumn(name = "id_abbonamento")
             )
     private List<Abbonamento> listaAbbonamenti = new ArrayList<Abbonamento>();
 
@@ -104,6 +104,14 @@ public class Viaggio {
 
     public void setTratta(Tratta tratta) {
         this.tratta = tratta;
+    }
+
+    public List<Vidimazione> getListaDiVidimazioni() {
+        return listaDiVidimazioni;
+    }
+
+    public List<Abbonamento> getListaAbbonamenti() {
+        return listaAbbonamenti;
     }
 
     @Override

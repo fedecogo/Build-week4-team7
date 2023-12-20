@@ -7,9 +7,6 @@ public class Utente {
     @Id
     @GeneratedValue
     private long id_utente;
-
-
-
     private String nome;
     private String cognome;
     private LocalDate dataDiNascita;

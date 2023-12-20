@@ -4,6 +4,7 @@ import team_7.entities.enums.TipoMezzo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,9 +21,9 @@ public class MezzoDiTrasporto {
     private boolean inServizio = true;
     private int capienza;
     @OneToMany(mappedBy = "mezzo",cascade = CascadeType.REMOVE)
-    private List<Manutenzione> listaManutenzioni;
+    private List<Manutenzione> listaManutenzioni = new ArrayList<>();
     @OneToMany(mappedBy = "mezzo")
-    private List <Viaggio> listaDiViaggi;
+    private List <Viaggio> listaDiViaggi = new ArrayList<>();
 
     public MezzoDiTrasporto(){
     }
@@ -66,6 +67,10 @@ public class MezzoDiTrasporto {
 
     public List<Manutenzione> getListaManutenzioni() {
         return listaManutenzioni;
+    }
+
+    public List<Viaggio> getListaDiViaggi() {
+        return listaDiViaggi;
     }
 
     @Override

@@ -57,6 +57,7 @@ public class Tessera {
         return dataScadenza;
     }
 
+
     @Override
     public String toString() {
         return "Tessera{" +
