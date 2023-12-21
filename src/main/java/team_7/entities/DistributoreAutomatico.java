@@ -23,8 +23,12 @@ public class DistributoreAutomatico extends PuntoVendita {
         return inServizio;
     }
 
-    public void setInServizio(boolean inServizio) {
-        this.inServizio = inServizio;
+    public void setInServizio() {
+        this.inServizio = true;
+    }
+
+    public void setFuoriServizio() {
+        this.inServizio = false;
     }
 
     @Override

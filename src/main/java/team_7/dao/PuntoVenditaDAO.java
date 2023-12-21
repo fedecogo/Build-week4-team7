@@ -17,14 +17,14 @@ public class PuntoVenditaDAO {
         transaction.begin();
         em.persist(puntoVendita);
         transaction.commit();
-        System.out.println("Il punto vendita "+ puntoVendita.getNome()+"è stato aggiunto correttamente");
+        System.out.println("Il punto vendita "+ puntoVendita.getNome()+" è stato aggiunto correttamente");
     }
     public PuntoVendita findById(long id){
         PuntoVendita found = null;
         try{
             found=em.find(PuntoVendita.class,id);
             if(found == null){
-                throw new IllegalArgumentException("Il punto vendita con id "+id+"non è presente nel database");
+                throw new IllegalArgumentException("Il punto vendita con id "+id+" non è presente nel database");
             }
         } catch (IllegalArgumentException e){
             System.err.println(e.getMessage());
@@ -40,7 +40,7 @@ public class PuntoVenditaDAO {
             transaction.commit();
             System.out.println("Il punto vendita "+found.getNome()+" è stato correttamente rimosso");
         } catch(IllegalArgumentException | NullPointerException e){
-            System.err.println("Il punto vendita con id "+id+"non è presente nel database");
+            System.err.println("Il punto vendita con id "+id+" non è presente nel database");
         }
     }
 }

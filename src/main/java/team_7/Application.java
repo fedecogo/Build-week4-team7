@@ -2,11 +2,9 @@ package team_7;
 
 
 import team_7.dao.*;
-import team_7.entities.Tessera;
-import team_7.entities.Utente;
-import team_7.entities.Abbonamento;
-import team_7.entities.Biglietto;
+import team_7.entities.*;
 import team_7.entities.enums.StatoAbbonamento;
+import team_7.entities.enums.TipoRivenditore;
 import team_7.entities.enums.TipoTratta;
 import team_7.functionalities.DateParser;
 
@@ -33,39 +31,15 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
-        LocalDate dataEmissione = LocalDate.now();
-        Utente aldo = utenteDao.findById(1);
-        Tessera tesseraAldo = new Tessera(dataEmissione, aldo);
-        tesseraDao.save(tesseraAldo);
+        PuntoVendita tabacchino = new RivenditoreAutorizzato("Rossi Tabacchi srl","Roma", TipoRivenditore.TABACCHINO);
+        PuntoVendita edicola = new RivenditoreAutorizzato("La Pineta","Pescara", TipoRivenditore.EDICOLA);
+        PuntoVendita biglietteria = new RivenditoreAutorizzato("Galileo Info Point","Bagnone", TipoRivenditore.BIGLIETTERIA);
+        PuntoVendita distributore = new DistributoreAutomatico("Sono un povero distributore","Cloud");
 
-        Utente giovanni = utenteDao.findById(2);
-        Tessera tesseraGiovanni = new Tessera(dataEmissione, giovanni);
-        tesseraDao.save(tesseraGiovanni);
-
-        Utente giacomo = utenteDao.findById(3);
-        Tessera tesserag = new Tessera(dataEmissione, giacomo);
-        tesseraDao.save(tesserag);
-
-        Utente m = utenteDao.findById(4);
-        Tessera tesseram = new Tessera(dataEmissione, m);
-        tesseraDao.save(tesseram);
-
-        Utente mar = utenteDao.findById(5);
-        Tessera tesseraMar = new Tessera(dataEmissione, mar);
-        tesseraDao.save(tesseraMar);
-
-        Utente lu = utenteDao.findById(6);
-        Tessera tesseralu = new Tessera(dataEmissione, lu);
-        tesseraDao.save(tesseralu);
-
-        Utente p = utenteDao.findById(7);
-        Tessera tesserap = new Tessera(dataEmissione, p);
-        tesseraDao.save(tesserap);
-
-
-        Utente b = utenteDao.findById(8);
-        Tessera tessera = new Tessera(dataEmissione, b);
-        tesseraDao.save(tessera);
+        puntoVenditaDAO.save(tabacchino);
+        puntoVenditaDAO.save(edicola);
+        puntoVenditaDAO.save(biglietteria);
+        puntoVenditaDAO.save(distributore);
 
 
 
