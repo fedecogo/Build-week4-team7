@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "punto_vendita")
+@Table(name = "punti_vendita")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="categoria")
 

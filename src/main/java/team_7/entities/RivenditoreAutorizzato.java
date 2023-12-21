@@ -5,7 +5,7 @@ import team_7.entities.enums.TipoRivenditore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rivenditore_autorizzato")
+@Table(name = "rivenditori_autorizzati")
 @DiscriminatorValue("rivenditore")
 public class RivenditoreAutorizzato extends PuntoVendita {
     @Column(name = "tipo_rivenditore")

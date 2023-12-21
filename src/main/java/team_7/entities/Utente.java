@@ -3,6 +3,7 @@ package team_7.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
+@Table(name = "utenti")
 public class Utente {
     @Id
     @GeneratedValue
