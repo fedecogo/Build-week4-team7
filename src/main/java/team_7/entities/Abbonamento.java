@@ -5,8 +5,8 @@ import team_7.entities.enums.TipoAbbonamento;
 import team_7.entities.enums.TipoTratta;
 
 import javax.persistence.*;
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,9 @@ import java.util.List;
 public class Abbonamento extends TitoloDiViaggio{
     @Column(name = "data_fine")
     private LocalDate dataFine;
+    private boolean andataERitorno;
     @Column(name="tipo_abbonamento")
+    @Enumerated (EnumType.STRING)
     private TipoAbbonamento tipoAbbonamento;
     @Column(name = "stato_abbonamento")
     @Enumerated (EnumType.STRING)
@@ -25,7 +27,7 @@ public class Abbonamento extends TitoloDiViaggio{
     @JoinColumn(name="tessera_utente",nullable = false)
     private Tessera tesseraUtente;
     @Column(name="durata_abbonamento")
-    private Duration durataAbbonamento;
+    private int durataAbbonamento;
     @ManyToOne
     @JoinColumn(name="tratta", nullable = false)
     private Tratta tratta;
@@ -34,9 +36,10 @@ public class Abbonamento extends TitoloDiViaggio{
 
 
     public Abbonamento(){}
-    public Abbonamento(LocalDate dataEmissione, PuntoVendita puntoVendita, Tessera tesseraUtente , Tratta tratta, TipoAbbonamento tipoAbbonamento) {
+    public Abbonamento(LocalDate dataEmissione, PuntoVendita puntoVendita, Tessera tesseraUtente , Tratta tratta, TipoAbbonamento tipoAbbonamento, boolean andataERitorno) {
         super(dataEmissione, puntoVendita);
         this.tipoAbbonamento = tipoAbbonamento;
+        this.andataERitorno = andataERitorno;
         switch (tipoAbbonamento){
             case SETTIMANALE -> this.dataFine = dataEmissione.plusWeeks(1);
             case MENSILE -> this.dataFine = dataEmissione.plusMonths(1);
@@ -51,7 +54,7 @@ public class Abbonamento extends TitoloDiViaggio{
             this.statoAbbonamento = StatoAbbonamento.ATTIVO;
         }
         this.tesseraUtente = tesseraUtente;
-        this.durataAbbonamento = Duration.between(dataEmissione,dataFine);
+        this.durataAbbonamento = (int) ChronoUnit.DAYS.between(dataEmissione,dataFine);
         this.tratta = tratta;
     }
 
@@ -79,16 +82,16 @@ public class Abbonamento extends TitoloDiViaggio{
         this.tesseraUtente = tesseraUtente;
     }
 
-    public Duration getDurataAbbonamento() {
+    public int getDurataAbbonamento() {
         return durataAbbonamento;
     }
 
-    public void setDurataAbbonamento(Duration durataAbbonamento) {
+    public void setDurataAbbonamento(int durataAbbonamento) {
         this.durataAbbonamento = durataAbbonamento;
     }
 
-    public Duration getDurataResidua() {
-     return Duration.between(LocalDate.now(), dataFine)  ;
+    public int getDurataResidua() {
+        return (int) ChronoUnit.DAYS.between(LocalDate.now(), dataFine)  ;
     }
 
     public StatoAbbonamento getStatoAbbonamento() {
@@ -97,6 +100,14 @@ public class Abbonamento extends TitoloDiViaggio{
 
     public Tratta getTratta() {
         return tratta;
+    }
+
+    public boolean isAndataERitorno() {
+        return andataERitorno;
+    }
+
+    public void setAndataERitorno(boolean andataERitorno) {
+        this.andataERitorno = andataERitorno;
     }
 
     public List<Viaggio> getListaViaggi() {

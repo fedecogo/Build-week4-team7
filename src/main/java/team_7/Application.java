@@ -30,7 +30,33 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
-        PuntoVendita tabacchino = puntoVenditaDAO.findById(17);
+        PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
+        PuntoVendita edicola = puntoVenditaDAO.findById(18);
+        PuntoVendita infoP = puntoVenditaDAO.findById(19);
+        PuntoVendita dist = puntoVenditaDAO.findById(20);
+        Tessera t1 = tesseraDao.findById(9);
+        Tessera t2 = tesseraDao.findById(10);
+        Tessera t3 = tesseraDao.findById(11);
+        Tessera t4 = tesseraDao.findById(12);
+        Tessera t5 = tesseraDao.findById(13);
+        Tessera t6 = tesseraDao.findById(14);
+        Tessera t7 = tesseraDao.findById(15);
+        Tessera t8 = tesseraDao.findById(16);
+        Tratta palMil = trattaDAO.findById(37);
+        Tratta tr1 = trattaDAO.findById(21);
+        Tratta tr2 = trattaDAO.findById(26);
+        Tratta tr3 = trattaDAO.findById(32);
+        Abbonamento aldoPalMil = new Abbonamento(LocalDate.now(),tabacchi,t1,palMil,TipoAbbonamento.SEMESTRALE,true);
+        Abbonamento abb1 = new Abbonamento(LocalDate.now(),edicola,t2,tr1,TipoAbbonamento.SETTIMANALE,false);
+        Abbonamento abb2 = new Abbonamento(LocalDate.now(),infoP,t3,tr2,TipoAbbonamento.MENSILE,true);
+        Abbonamento abb3 = new Abbonamento(LocalDate.now(),dist,t4,tr3,TipoAbbonamento.MENSILE,false);
+
+        abbonamentoDAO.save(aldoPalMil);
+        abbonamentoDAO.save(abb1);
+        abbonamentoDAO.save(abb2);
+        abbonamentoDAO.save(abb3);
+
+        /*PuntoVendita tabacchino = puntoVenditaDAO.findById(17);
         Biglietto aldoBg = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.LUNGA);
         bigliettoDAO.save(aldoBg);
         Biglietto aldoBg1 = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.BREVE);
@@ -76,7 +102,23 @@ public class Application {
         Biglietto aldoBg845 = new Biglietto(LocalDate.now(),distributore,TipoTratta.LUNGA);
         bigliettoDAO.save(aldoBg845);
         Biglietto aldoBg956 = new Biglietto(LocalDate.now(),distributore,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg956);
+        bigliettoDAO.save(aldoBg956);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         em.close();
         emf.close();
