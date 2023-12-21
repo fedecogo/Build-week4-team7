@@ -7,6 +7,9 @@
     <list default="true" id="7c05a08c-41b4-4703-b7ea-bfeca6e3a258" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team_7/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/dao/ManutenzioneDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/ManutenzioneDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/MezzoDiTrasporto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/MezzoDiTrasporto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/Tratta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Tratta.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Carmen-thursday",
+    "git-widget-placeholder": "fede-d4-pt1",
     "settings.editor.selected.configurable": "configurable.group.editor"
   }
 }]]></component>

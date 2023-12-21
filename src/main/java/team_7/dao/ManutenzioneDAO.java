@@ -16,7 +16,7 @@ public class ManutenzioneDAO {
         transaction.begin();
         em.persist(manutenzione);
         transaction.commit();
-        System.out.println("La manutenzione "+manutenzione.getId()+" del "+manutenzione.getDataInizio()+"è stata correttamente registrata.");
+        System.out.println("La manutenzione del "+manutenzione.getMezzo().getTipoMezzo()+ " con id "  +manutenzione.getId()+" del "+manutenzione.getDataInizio()+" è stata correttamente registrata.");
     }
     public Manutenzione findById(long id){
         Manutenzione found = null;
