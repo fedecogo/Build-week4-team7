@@ -1,57 +1,49 @@
 package team_7.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import java.util.List;
-
 import team_7.entities.Utente;
 
-public class UtenteDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("galileo_express");
 
-    public void createUtente(Utente utente) {
-        EntityManager em = emf.createEntityManager();
+public class UtenteDao {
+    private final EntityManager em;
+
+    public UtenteDao(EntityManager em) {
+        this.em = em;
+    }
+
+    public void save(Utente utente){
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(utente);
+        transaction.commit();
+        System.out.println("L' utente "+utente.getCognome()+" "+ utente.getNome() + " è stato salvato");
+    }
+
+    public Utente findById (long id){
+        Utente found = null;
+        try{
+            found = em.find(Utente.class, id);
+            if(found == null){
+                throw new IllegalArgumentException("L' utente con id: " + id + " non è stato trovato!");
+            }
+        }catch ( IllegalArgumentException e){
+            System.err.println(e.getMessage());
+        }
+        return found;
+    }
+
+    public void deleteById (long id){
+        Utente found = this.findById(id);
         EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
-            em.persist(utente);
+            em.remove(found);
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            em.close();
+            System.out.println("L' utente con id: " + id + " è stato correttamente rimosso!");
+        } catch (NullPointerException | IllegalArgumentException e){
+            System.err.println("L' utente con id: " + id +  " non è stato trovato!");
         }
     }
-    public List<Utente> getAllUtenti() {
-        EntityManager em = emf.createEntityManager();
-        List<Utente> utenti = null;
-
-        try {
-            utenti = em.createQuery("SELECT u FROM Utente u", Utente.class).getResultList();
-        } finally {
-            em.close();
-        }
-
-        return utenti;
-    }
-    public Utente getUtenteById(long utenteId) {
-        EntityManager em = emf.createEntityManager();
-        Utente utente = null;
-
-        try {
-            utente = em.find(Utente.class, utenteId);
-        } finally {
-            em.close();
-        }
-
-        return utente;
-    }
-
-    // delate utente
 }

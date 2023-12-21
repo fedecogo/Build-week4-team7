@@ -1,60 +1,48 @@
 package team_7.dao;
 
 import team_7.entities.Tessera;
-import team_7.entities.Utente;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import java.util.List;
 
 public class TesseraDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("galileo_express");
+    private final EntityManager em;
 
-    public void createTessera(Tessera tessera) {
-        EntityManager em = emf.createEntityManager();
+    public TesseraDao(EntityManager em) {
+        this.em = em;
+    }
+
+    public void save(Tessera tessera){
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(tessera);
+        transaction.commit();
+        System.out.println("La tessera n° " + tessera.getId_tessera() + " è stata correttamente registrata!");
+    }
+
+    public Tessera findById (long id){
+        Tessera found = null;
+        try{
+            found = em.find(Tessera.class, id);
+            if(found == null){
+                throw new IllegalArgumentException("La tessera con id " + id + " non è stata trovata!");
+            }
+        }catch ( IllegalArgumentException e){
+            System.err.println(e.getMessage());
+        }
+        return found;
+    }
+
+    public void deleteById (long id){
+        Tessera found = this.findById(id);
         EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
-            em.persist(tessera);
+            em.remove(found);
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            em.close();
+            System.out.println("La tessera n°" + id + " è stata correttamente rimossa!");
+        } catch (NullPointerException | IllegalArgumentException e){
+            System.err.println("La tessera con id" + id + " non è stata trovata!");
         }
-    }
-
-    public Tessera getTesseraById(long tesseraId) {
-        EntityManager em = emf.createEntityManager();
-        Tessera tessera = null;
-
-        try {
-            tessera = em.find(Tessera.class, tesseraId);
-        } finally {
-            em.close();
-        }
-
-        return tessera;
-    }
-
-    public List<Tessera> getTessereByUtente(Utente utente) {
-        EntityManager em = emf.createEntityManager();
-        List<Tessera> tessere = null;
-
-        try {
-            tessere = em.createQuery("SELECT t FROM Tessera t WHERE t.utente = :utente", Tessera.class)
-                    .setParameter("utente", utente)
-                    .getResultList();
-        } finally {
-            em.close();
-        }
-
-        return tessere;
     }
 }
