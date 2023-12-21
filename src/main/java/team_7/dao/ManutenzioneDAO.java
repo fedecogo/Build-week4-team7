@@ -1,6 +1,7 @@
 package team_7.dao;
 
 import team_7.entities.Manutenzione;
+import team_7.entities.enums.TipoMezzo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -16,7 +17,8 @@ public class ManutenzioneDAO {
         transaction.begin();
         em.persist(manutenzione);
         transaction.commit();
-        System.out.println("La manutenzione del "+manutenzione.getMezzo().getTipoMezzo()+ " con id "  +manutenzione.getId()+" del "+manutenzione.getDataInizio()+" è stata correttamente registrata.");
+        String stringaOpz = manutenzione.getMezzo().getTipoMezzo() == TipoMezzo.AUTOBUS ? "l' " : " ";
+        System.out.println("La manutenzione del" + stringaOpz + manutenzione.getMezzo().getTipoMezzo()+ " con id "  + manutenzione.getId()+" del "+ manutenzione.getDataInizio()+" è stata correttamente registrata.");
     }
     public Manutenzione findById(long id){
         Manutenzione found = null;
