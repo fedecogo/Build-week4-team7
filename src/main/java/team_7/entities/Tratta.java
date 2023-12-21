@@ -35,7 +35,7 @@ public class Tratta {
     public Tratta(Capolinea partenza, Capolinea arrivo, Duration durataMedia) {
         this.partenza = partenza;
         this.arrivo = arrivo;
-        this.durataMedia = Integer.parseInt(durataMedia.toString());
+        this.durataMedia = (int) durataMedia.toMinutes();
         if(durataMedia.compareTo(Duration.ofMinutes(180)) <=0){ //se durata media è inferiore a 3 allora la tratta è breve
             this.tipoTratta = TipoTratta.BREVE;
         } else if (durataMedia.compareTo(Duration.ofMinutes(360))<=0) {
@@ -64,6 +64,7 @@ public class Tratta {
     public int getDurataMedia() {
         return durataMedia;
     }
+
 
     public TipoTratta getTipoTratta() {
         return tipoTratta;

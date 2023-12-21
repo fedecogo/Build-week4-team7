@@ -14,6 +14,7 @@ public class MezzoDiTrasporto {
     @GeneratedValue
     private long id;
     @Column(name="tipo_mezzo")
+    @Enumerated(EnumType.STRING)
     private TipoMezzo tipoMezzo;
     @Column(name="data_acquisto")
     private LocalDate dataAcquisto;
