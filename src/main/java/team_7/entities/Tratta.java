@@ -22,7 +22,7 @@ public class Tratta {
 
     private Capolinea arrivo;
     @Column(name = "durata_media")
-    private Duration durataMedia;
+    private int durataMedia;
     @Enumerated(EnumType.STRING)
 
     @Column(name = "tipo_tratta")
@@ -35,10 +35,10 @@ public class Tratta {
     public Tratta(Capolinea partenza, Capolinea arrivo, Duration durataMedia) {
         this.partenza = partenza;
         this.arrivo = arrivo;
-        this.durataMedia = durataMedia;
-        if(durataMedia.compareTo(Duration.ofHours(3)) <=0){ //se durata media è inferiore a 3 allora la tratta è breve
+        this.durataMedia = Integer.parseInt(durataMedia.toString());
+        if(durataMedia.compareTo(Duration.ofMinutes(180)) <=0){ //se durata media è inferiore a 3 allora la tratta è breve
             this.tipoTratta = TipoTratta.BREVE;
-        } else if (durataMedia.compareTo(Duration.ofHours(6))<=0) {
+        } else if (durataMedia.compareTo(Duration.ofMinutes(360))<=0) {
             this.tipoTratta = TipoTratta.MEDIA;
 
         }else {
@@ -61,10 +61,9 @@ public class Tratta {
     }
 
 
-    public Duration getDurataMedia() {
+    public int getDurataMedia() {
         return durataMedia;
     }
-
 
     public TipoTratta getTipoTratta() {
         return tipoTratta;
