@@ -18,7 +18,8 @@ public class AbbonamentoDAO {
         transaction.begin();
         em.persist(abbonamento);
         transaction.commit();
-        System.out.println("Biglietto n°: " + abbonamento.getId()+ " salvato.");
+        String strOpz = abbonamento.isAndataERitorno() ? " (andata e ritorno)" : "";
+        System.out.println("L'abbonamento"+ strOpz +" n° " + abbonamento.getId()+ " da "+abbonamento.getTratta().getPartenza()+ " a "+abbonamento.getTratta().getArrivo()+" è stato salvato.");
     }
 
     public Abbonamento findById (long id){
