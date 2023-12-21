@@ -30,7 +30,7 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
-        PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
+        /*PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
         PuntoVendita edicola = puntoVenditaDAO.findById(18);
         PuntoVendita infoP = puntoVenditaDAO.findById(19);
         PuntoVendita dist = puntoVenditaDAO.findById(20);
@@ -56,53 +56,39 @@ public class Application {
         abbonamentoDAO.save(abb2);
         abbonamentoDAO.save(abb3);
 
-        /*PuntoVendita tabacchino = puntoVenditaDAO.findById(17);
-        Biglietto aldoBg = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg);
-        Biglietto aldoBg1 = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg1);
-        Biglietto aldoBg2 = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg2);
-        Biglietto aldoBg3 = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg3);
-        Biglietto aldoBg4 = new Biglietto(LocalDate.now(),tabacchino,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg4);
 
-        PuntoVendita edicola = puntoVenditaDAO.findById(18);
-        Biglietto aldoBg5 = new Biglietto(LocalDate.now(),edicola,TipoTratta.MEDIA);
-        bigliettoDAO.save(aldoBg5);
-        Biglietto aldoBg6 = new Biglietto(LocalDate.now(),edicola,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg6);
-        Biglietto aldoBg7 = new Biglietto(LocalDate.now(),edicola,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg7);
-        Biglietto aldoBg8 = new Biglietto(LocalDate.now(),edicola,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg8);
-        Biglietto aldoBg9 = new Biglietto(LocalDate.now(),edicola,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg9);
+         */
+       MezzoDiTrasporto autobus = mezzoDiTrasportoDAO.findById(65);
+       Tratta miTo = trattaDAO.findById(30);
+       Viaggio viaggio1 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),autobus, miTo);
+       viaggioDAO.save(viaggio1);
 
-        PuntoVendita biglietteria = puntoVenditaDAO.findById(19);
-        Biglietto aldoBg51 = new Biglietto(LocalDate.now(),biglietteria,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg51);
-        Biglietto aldoBg62 = new Biglietto(LocalDate.now(),biglietteria,TipoTratta.MEDIA);
-        bigliettoDAO.save(aldoBg62);
-        Biglietto aldoBg73 = new Biglietto(LocalDate.now(),biglietteria,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg73);
-        Biglietto aldoBg84 = new Biglietto(LocalDate.now(),biglietteria,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg84);
-        Biglietto aldoBg95 = new Biglietto(LocalDate.now(),biglietteria,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg95);
 
-        PuntoVendita distributore = puntoVenditaDAO.findById(20);
-        Biglietto aldoBg512 = new Biglietto(LocalDate.now(),distributore,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg512);
-        Biglietto aldoBg623 = new Biglietto(LocalDate.now(),distributore,TipoTratta.MEDIA);
-        bigliettoDAO.save(aldoBg623);
-        Biglietto aldoBg734 = new Biglietto(LocalDate.now(),distributore,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg734);
-        Biglietto aldoBg845 = new Biglietto(LocalDate.now(),distributore,TipoTratta.LUNGA);
-        bigliettoDAO.save(aldoBg845);
-        Biglietto aldoBg956 = new Biglietto(LocalDate.now(),distributore,TipoTratta.BREVE);
-        bigliettoDAO.save(aldoBg956);*/
+        MezzoDiTrasporto autobus1 = mezzoDiTrasportoDAO.findById(65);
+        Tratta toMi = trattaDAO.findById(29);
+        Viaggio viaggio2 = new Viaggio( LocalDate.now().atTime(10,30), LocalDate.now().atTime(12,32),autobus1, toMi);
+        viaggioDAO.save(viaggio2);
+
+
+        MezzoDiTrasporto autobus2 = mezzoDiTrasportoDAO.findById(66);
+        Tratta miPa = trattaDAO.findById(46);
+        Viaggio viaggio3 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),autobus2, miPa);
+        viaggioDAO.save(viaggio3);
+
+        MezzoDiTrasporto treno0 = mezzoDiTrasportoDAO.findById(70);
+        Tratta fiBo = trattaDAO.findById(36);
+        Viaggio viaggio4 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno0, fiBo );
+        viaggioDAO.save(viaggio4);
+
+        MezzoDiTrasporto treno1 = mezzoDiTrasportoDAO.findById(71);
+        Tratta roFi = trattaDAO.findById(37);
+        Viaggio viaggio5 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno1, roFi);
+        viaggioDAO.save(viaggio5);
+
+        MezzoDiTrasporto treno2 = mezzoDiTrasportoDAO.findById(72);
+        Tratta leVe = trattaDAO.findById(50);
+        Viaggio viaggio6 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno2, leVe);
+        viaggioDAO.save(viaggio6);
 
 
 
@@ -111,8 +97,7 @@ public class Application {
 
 
 
-
-
+// SOLO PER MEEEEEEEEEE FEDEEE            !!CANCELLARE I VIAGGI GIA ESISTENTI E RIEARI TUTTI QUANTI sisteemare le date in application e frae la stessa cosa di tratte per viaggi, duration in int e una roba che si chiama con la c che ora non mi ricordo
 
 
 
