@@ -30,13 +30,35 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
+        LocalDate dataOggi = LocalDate.now();
+        LocalDate dataVecchia = LocalDate.of(2022,01,01);
+        MezzoDiTrasporto bus1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataOggi);
+        MezzoDiTrasporto bus2 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataVecchia);
+        MezzoDiTrasporto bus3 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataVecchia);
+        MezzoDiTrasporto bus4 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataVecchia);
+        MezzoDiTrasporto bus5 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataVecchia);
+        MezzoDiTrasporto bus6 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, dataVecchia);
 
-        //MezzoDiTrasporto busFromDb = mezzoDiTrasportoDAO.findById(104);
-        //Manutenzione m1 = new Manutenzione(LocalDate.now(), "sono io il problema" , busFromDb);
-         Manutenzione m1 = manutenzioneDAO.findById(108);
-         m1.setDataFine(LocalDate.now());
-     //   m1.setDataFine(LocalDate.now());
-        manutenzioneDAO.save(m1);
+        MezzoDiTrasporto tren1 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+        MezzoDiTrasporto tren2 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+        MezzoDiTrasporto tren3 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+        MezzoDiTrasporto tren4 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+        MezzoDiTrasporto tren5 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+        MezzoDiTrasporto tren6 = new MezzoDiTrasporto(TipoMezzo.TRENO, dataVecchia);
+
+        mezzoDiTrasportoDAO.save(bus1);
+        mezzoDiTrasportoDAO.save(bus2);
+        mezzoDiTrasportoDAO.save(bus3);
+        mezzoDiTrasportoDAO.save(bus4);
+        mezzoDiTrasportoDAO.save(bus5);
+        mezzoDiTrasportoDAO.save(bus6);
+
+        mezzoDiTrasportoDAO.save(tren1);
+        mezzoDiTrasportoDAO.save(tren2);
+        mezzoDiTrasportoDAO.save(tren3);
+        mezzoDiTrasportoDAO.save(tren4);
+        mezzoDiTrasportoDAO.save(tren5);
+        mezzoDiTrasportoDAO.save(tren6);
 
 
 
@@ -48,11 +70,10 @@ public class Application {
 
 
 
-        /*System.out.println("Ciao inserisci id utente");
-        long idUt = Long.parseLong(sc.nextLine());
-        Utente userFromDB = utenteDao.findById(idUt);
 
-        if(userFromDB != null) System.out.println("Benvenuto!"+userFromDB);*/
+
+
+
 
 
         em.close();

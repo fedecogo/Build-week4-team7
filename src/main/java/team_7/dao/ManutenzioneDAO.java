@@ -18,7 +18,7 @@ public class ManutenzioneDAO {
         em.persist(manutenzione);
         transaction.commit();
         String stringaOpz = manutenzione.getMezzo().getTipoMezzo() == TipoMezzo.AUTOBUS ? "l' " : " ";
-        System.out.println("La manutenzione del" + stringaOpz + manutenzione.getMezzo().getTipoMezzo()+ " con id "  + manutenzione.getId()+" del "+ manutenzione.getDataInizio()+" è stata correttamente registrata.");
+        System.out.println("La manutenzione n° "+manutenzione.getId() +" del" + stringaOpz + manutenzione.getMezzo().getTipoMezzo()+ " con id "  +manutenzione.getMezzo().getId() +" in data "+ manutenzione.getDataInizio()+" è stata correttamente registrata.");
     }
     public Manutenzione findById(long id){
         Manutenzione found = null;
