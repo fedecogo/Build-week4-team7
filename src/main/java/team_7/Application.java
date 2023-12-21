@@ -33,35 +33,42 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
-        LocalDate aldosBirthday = DateParser.parseDateForItaly("28/09/1958");
-        LocalDate giovannisBirthday = DateParser.parseDateForItaly("20/02/1957");
-        LocalDate giacomosBirthday = DateParser.parseDateForItaly("26/04/1956");
-        LocalDate marinasBirthday = DateParser.parseDateForItaly("16/05/1963");
+        LocalDate dataEmissione = LocalDate.now();
+        Utente aldo = utenteDao.findById(1);
+        Tessera tesseraAldo = new Tessera(dataEmissione, aldo);
+        tesseraDao.save(tesseraAldo);
 
-        Utente aldo = new Utente("Aldo","Baglio",aldosBirthday);
-        Utente giovanni = new Utente("Giovanni","Storti",giovannisBirthday);
-        Utente giacomo = new Utente("Giacomo","Poretti",giacomosBirthday);
-        Utente marina = new Utente("Marina","Massironi",marinasBirthday);
+        Utente giovanni = utenteDao.findById(2);
+        Tessera tesseraGiovanni = new Tessera(dataEmissione, giovanni);
+        tesseraDao.save(tesseraGiovanni);
 
-        utenteDao.save(aldo);
-        utenteDao.save(giovanni);
-        utenteDao.save(giacomo);
-        utenteDao.save(marina);
+        Utente giacomo = utenteDao.findById(3);
+        Tessera tesserag = new Tessera(dataEmissione, giacomo);
+        tesseraDao.save(tesserag);
 
-        LocalDate marioBd = DateParser.parseDateForItaly("05/04/1980");
-        LocalDate luigiBd = DateParser.parseDateForItaly("22/02/1989");
-        LocalDate peachBd = DateParser.parseDateForItaly("07/11/1993");
-        LocalDate bowserBd = DateParser.parseDateForItaly("18/10/1975");
+        Utente m = utenteDao.findById(4);
+        Tessera tesseram = new Tessera(dataEmissione, m);
+        tesseraDao.save(tesseram);
 
-        Utente mario = new Utente("Mario","Bros",marioBd);
-        Utente luigi = new Utente("Luigi","Bros",luigiBd);
-        Utente peach = new Utente("Peach","Toadstool",peachBd);
-        Utente bowser = new Utente("Bowser","Coopa",bowserBd);
+        Utente mar = utenteDao.findById(5);
+        Tessera tesseraMar = new Tessera(dataEmissione, mar);
+        tesseraDao.save(tesseraMar);
 
-        utenteDao.save(mario);
-        utenteDao.save(luigi);
-        utenteDao.save(peach);
-        utenteDao.save(bowser);
+        Utente lu = utenteDao.findById(6);
+        Tessera tesseralu = new Tessera(dataEmissione, lu);
+        tesseraDao.save(tesseralu);
+
+        Utente p = utenteDao.findById(7);
+        Tessera tesserap = new Tessera(dataEmissione, p);
+        tesseraDao.save(tesserap);
+
+
+        Utente b = utenteDao.findById(8);
+        Tessera tessera = new Tessera(dataEmissione, b);
+        tesseraDao.save(tessera);
+
+
+
 
 
         /*System.out.println("Ciao inserisci id utente");
