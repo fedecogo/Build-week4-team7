@@ -107,7 +107,7 @@ public class Admin {
                         } else if (sceltaMezzo == 2) {
                             tipoMezzo = TipoMezzo.AUTOBUS;
                         } else {
-                            System.out.println("Hai inserito un'opzione non valida.");
+                            System.err.println("Hai inserito un'opzione non valida.");
                             break;
                         }
 
@@ -135,11 +135,11 @@ public class Admin {
                         }
                         break;
                     default:
-                        System.out.println("Scelta non valida");
+                        System.err.println("Scelta non valida");
                 }
 
             } else {
-                System.out.println("Password errata");
+                System.err.println("Password errata");
                 // inserisci di nuovo la password
             }
 
