@@ -45,6 +45,7 @@ public class PuntoVenditaDAO {
             System.err.println("Il punto vendita con id "+id+" non è presente nel database");
         }
     }
+
     public void mostraTuttiIRivenditori() {
         TypedQuery<PuntoVendita> query = em.createQuery("SELECT p FROM PuntoVendita p", PuntoVendita.class);
         List<PuntoVendita> puntiVendita = query.getResultList();
@@ -52,10 +53,10 @@ public class PuntoVenditaDAO {
         if (puntiVendita.isEmpty()) {
             System.out.println("Non ci sono rivenditori disponibili al momento.");
         } else {
-            System.out.println("Elenco di tutti i rivenditori:");
+            System.out.println("Elenco dei rivenditori:");
             for (PuntoVendita puntoVendita : puntiVendita) {
                 System.out.println("ID: " + puntoVendita.getId() +
-                        ", Nome: " + puntoVendita.getNome());
+                        ", " + puntoVendita.getNome());
             }
         }
     }

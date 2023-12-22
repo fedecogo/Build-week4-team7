@@ -13,11 +13,11 @@ public abstract class TitoloDiViaggio {
     @GeneratedValue
     private long id;
     @Column(name = "data_emissione")
-    private LocalDate data_emissione;
+    protected LocalDate data_emissione;
 
     @ManyToOne
     @JoinColumn(name = "id_punto_vendita", nullable = false)
-    private PuntoVendita puntoVendita;
+    protected PuntoVendita puntoVendita;
 
 
     public TitoloDiViaggio(){}

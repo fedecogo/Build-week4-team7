@@ -121,12 +121,14 @@ public class Abbonamento extends TitoloDiViaggio{
     @Override
     public String toString() {
         return "Abbonamento{" +
-                "dataFine=" + dataFine +
+                "dataInizio=" + super.data_emissione +
+                ", dataFine=" + dataFine +
                 ", statoAbbonamento=" + statoAbbonamento +
-                ", tesseraUtente=" + tesseraUtente +
+
                 ", durataAbbonamento=" + durataAbbonamento +
                 ", tratta=" + tratta +
-                ", listaViaggi=" + listaViaggi +
+                ", acquistato presso " + super.puntoVendita+
+
                 '}';
     }
 }

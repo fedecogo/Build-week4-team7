@@ -9,8 +9,11 @@ import team_7.functionalities.DateParser;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Application {
@@ -30,153 +33,13 @@ public class Application {
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
         VidimazioneDAO vidimazioneDAO = new VidimazioneDAO(em);
 
-
-
-
-
-
-
-
-        /*
-         LocalDate aldosBirthday = DateParser.parseDateForItaly("28/09/1958");
-        LocalDate giovannisBirthday = DateParser.parseDateForItaly("20/02/1957");
-        LocalDate giacomosBirthday = DateParser.parseDateForItaly("26/04/1956");
-        LocalDate marinasBirthday = DateParser.parseDateForItaly("16/05/1963");
-
-        Utente aldo = new Utente("Aldo","Baglio",aldosBirthday);
-        Utente giovanni = new Utente("Giovanni","Storti",giovannisBirthday);
-        Utente giacomo = new Utente("Giacomo","Poretti",giacomosBirthday);
-        Utente marina = new Utente("Marina","Massironi",marinasBirthday);
-
-        utenteDao.save(aldo);
-        utenteDao.save(giovanni);
-        utenteDao.save(giacomo);
-        utenteDao.save(marina);
-
-        LocalDate marioBd = DateParser.parseDateForItaly("05/04/1980");
-        LocalDate luigiBd = DateParser.parseDateForItaly("22/02/1989");
-        LocalDate peachBd = DateParser.parseDateForItaly("07/11/1993");
-        LocalDate bowserBd = DateParser.parseDateForItaly("18/10/1975");
-
-        Utente mario = new Utente("Mario","Bros",marioBd);
-        Utente luigi = new Utente("Luigi","Bros",luigiBd);
-        Utente peach = new Utente("Peach","Toadstool",peachBd);
-        Utente bowser = new Utente("Bowser","Coopa",bowserBd);
-
-        utenteDao.save(mario);
-        utenteDao.save(luigi);
-        utenteDao.save(peach);
-        utenteDao.save(bowser);
-        LocalDate dataEmissione = LocalDate.now();
-        Utente aldo = utenteDao.findById(1);
-        Tessera tesseraAldo = new Tessera(dataEmissione, aldo);
-        tesseraDao.save(tesseraAldo);
-
-        Utente giovanni = utenteDao.findById(2);
-        Tessera tesseraGiovanni = new Tessera(dataEmissione, giovanni);
-        tesseraDao.save(tesseraGiovanni);
-
-        Utente giacomo = utenteDao.findById(3);
-        Tessera tesserag = new Tessera(dataEmissione, giacomo);
-        tesseraDao.save(tesserag);
-
-        Utente m = utenteDao.findById(4);
-        Tessera tesseram = new Tessera(dataEmissione, m);
-        tesseraDao.save(tesseram);
-
-        Utente mar = utenteDao.findById(5);
-        Tessera tesseraMar = new Tessera(dataEmissione, mar);
-        tesseraDao.save(tesseraMar);
-
-        Utente lu = utenteDao.findById(6);
-        Tessera tesseralu = new Tessera(dataEmissione, lu);
-        tesseraDao.save(tesseralu);
-
-        Utente p = utenteDao.findById(7);
-        Tessera tesserap = new Tessera(dataEmissione, p);
-        tesseraDao.save(tesserap);
-
-
-        Utente b = utenteDao.findById(8);
-        Tessera tessera = new Tessera(dataEmissione, b);
-        tesseraDao.save(tessera);
-
-
-
-        PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
-
-
-        PuntoVendita edicola = puntoVenditaDAO.findById(18);
-        PuntoVendita infoP = puntoVenditaDAO.findById(19);
-        PuntoVendita dist = puntoVenditaDAO.findById(20);
-        Tessera t1 = tesseraDao.findById(9);
-        Tessera t2 = tesseraDao.findById(10);
-        Tessera t3 = tesseraDao.findById(11);
-        Tessera t4 = tesseraDao.findById(12);
-        Tessera t5 = tesseraDao.findById(13);
-        Tessera t6 = tesseraDao.findById(14);
-        Tessera t7 = tesseraDao.findById(15);
-        Tessera t8 = tesseraDao.findById(16);
-        Tratta palMil = trattaDAO.findById(37);
-        Tratta tr1 = trattaDAO.findById(21);
-        Tratta tr2 = trattaDAO.findById(26);
-        Tratta tr3 = trattaDAO.findById(32);
-        Abbonamento aldoPalMil = new Abbonamento(LocalDate.now(),tabacchi,t1,palMil,TipoAbbonamento.SEMESTRALE,true);
-        Abbonamento abb1 = new Abbonamento(LocalDate.now(),edicola,t2,tr1,TipoAbbonamento.SETTIMANALE,false);
-        Abbonamento abb2 = new Abbonamento(LocalDate.now(),infoP,t3,tr2,TipoAbbonamento.MENSILE,true);
-        Abbonamento abb3 = new Abbonamento(LocalDate.now(),dist,t4,tr3,TipoAbbonamento.MENSILE,false);
-
-        abbonamentoDAO.save(aldoPalMil);
-        abbonamentoDAO.save(abb1);
-        abbonamentoDAO.save(abb2);
-        abbonamentoDAO.save(abb3);
-
-
-
-       MezzoDiTrasporto autobus = mezzoDiTrasportoDAO.findById(65);
-       Tratta miTo = trattaDAO.findById(30);
-       Viaggio viaggio1 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),autobus, miTo);
-       viaggioDAO.save(viaggio1);
-
-
-        MezzoDiTrasporto autobus1 = mezzoDiTrasportoDAO.findById(65);
-        Tratta toMi = trattaDAO.findById(29);
-        Viaggio viaggio2 = new Viaggio( LocalDate.now().atTime(10,30), LocalDate.now().atTime(12,32),autobus1, toMi);
-        viaggioDAO.save(viaggio2);
-
-
-        MezzoDiTrasporto autobus2 = mezzoDiTrasportoDAO.findById(66);
-        Tratta miPa = trattaDAO.findById(46);
-        Viaggio viaggio3 = new Viaggio( LocalDate.now().atTime(5,30), LocalDate.now().atTime(19,39),autobus2, miPa);
-        viaggioDAO.save(viaggio3);
-
-        MezzoDiTrasporto treno0 = mezzoDiTrasportoDAO.findById(70);
-        Tratta fiBo = trattaDAO.findById(36);
-        Viaggio viaggio4 = new Viaggio( LocalDate.now().atTime(10,30), LocalDate.now().atTime(11,9),treno0, fiBo );
-        viaggioDAO.save(viaggio4);
-
-        MezzoDiTrasporto treno1 = mezzoDiTrasportoDAO.findById(71);
-        Tratta roFi = trattaDAO.findById(37);
-        Viaggio viaggio5 = new Viaggio( LocalDate.now().atTime(11,30), LocalDate.now().atTime(13,34),treno1, roFi);
-        viaggioDAO.save(viaggio5);
-
-        MezzoDiTrasporto treno2 = mezzoDiTrasportoDAO.findById(72);
-        Tratta leVe = trattaDAO.findById(50);
-        Viaggio viaggio6 = new Viaggio( LocalDate.now().atTime(3,30), LocalDate.now().atTime(22,39),treno2, leVe);
-        viaggioDAO.save(viaggio6);
-
-
-*/
-       // a monte potremmo chiede come suggeriva qualcuno ieri in call di fare la domanda iniziale se sei admin o user
-       //l'admin puo aggiungere mezzi , viaggi , rivenditori e vedere le info e gli storici???
-
         while (true) {
-            System.out.println("Cosa vuoi fare?");
-            System.out.println("1 Creare una Tessera");
-            System.out.println("2 Fai login con l'id della tua tessera e acquista nuovi abbonamneti");
-            System.out.println("3 Comprare un biglietto");
-            System.out.println("4 Vidima un biglietto");
-            System.out.println("5 Uscire");
+            System.out.println("Benvenuto alla Galileo Express, come possiamo aiutarti? Scegli un' opzione:");
+            System.out.println("1: Crea una Tessera.");
+            System.out.println("2: Fai login con l'id della tua tessera e acquista nuovi abbonamenti.");
+            System.out.println("3: Compra un biglietto.");
+            System.out.println("4: Timbra un biglietto.");
+            System.out.println("5: Esci.");
 
             int scelta = sc.nextInt();
             sc.nextLine();
@@ -200,7 +63,7 @@ public class Application {
                     tesseraDao.save(tesseraNuova);
 
                     System.out.println("Benvenuto "+ nome + " sei stato assegnato alla tessera con id "+ tesseraNuova.getId_tessera());
-                    System.out.println("Vuoi acquistare un abbonamento per un viaggio? si o no ");
+                    System.out.println("Vuoi acquistare un abbonamento per un viaggio? si o no. ");
                     String scelta2 = sc.nextLine();
                     if (scelta2.equals("si")) {
                         System.out.println("Dove stai comprando il tuo abbonamento?");
@@ -215,15 +78,41 @@ public class Application {
                         Tratta andata = trattaDAO.findById(idViaggioDaAggiungereXUtente);
                         LocalDate oggi = LocalDate.now();
 
-                        // dare la possibilita di scegliere il tipo di abbonamneto
-                        Abbonamento newAbbonamento = new Abbonamento( oggi, puntoVenditaScelto, tesseraNuova, andata, TipoAbbonamento.MENSILE, true);
+                        System.out.println("Seleziona che tipo di abbonamento vuoi acquistare:");
+                        System.out.println("1: Settimanale");
+                        System.out.println("2: Mensile");
+                        System.out.println("3: Semestrale");
+                        int sceltaTipoAbb = sc.nextInt();
+
+                        // dare la possibilita di scegliere il tipo di abbonamneto --> FATTO
+                        TipoAbbonamento tipoAbbonamento = null;
+
+                        switch (sceltaTipoAbb){
+                            case 1:
+                                tipoAbbonamento = TipoAbbonamento.SETTIMANALE;
+                                break;
+                            case 2:
+                                tipoAbbonamento = TipoAbbonamento.MENSILE;
+                                break;
+                            case 3:
+                                tipoAbbonamento = TipoAbbonamento.SEMESTRALE;
+                                break;
+                            default:
+                                System.err.println("Scelta non valida!");
+                        }
+
+                        System.out.println("Seleziona il tipo di viaggio: 1 solo andata, 2 andata e ritorno.");
+                        int sceltaAR = sc.nextInt();
+                        boolean andataRitorno = (sceltaAR == 2);
+
+                        Abbonamento newAbbonamento = new Abbonamento( oggi, puntoVenditaScelto, tesseraNuova, andata, tipoAbbonamento, andataRitorno);
                         abbonamentoDAO.save(newAbbonamento);
-                        System.out.println("Perfetto " + nome + "abbiamo creato il tuo abbonamento "+ TipoAbbonamento.MENSILE +" per la tratta "+ trattaDAO.findById(idViaggioDaAggiungereXUtente) + "il tuo abbonamneto ha id " + newAbbonamento.getId());
+                        System.out.println("Perfetto " + nome + " abbiamo creato il tuo abbonamento "+ tipoAbbonamento +" per la "+ trattaDAO.findById(idViaggioDaAggiungereXUtente) + " il tuo abbonamento ha id " + newAbbonamento.getId());
                     }
                     break;
 
                 case 2:
-                    System.out.println("Bentornato! Inserisci l'id della tua tessera per effettuare il login");
+                    System.out.println("Bentornato! Inserisci l'id della tua tessera per effettuare il login.");
                     int idTesseraUtenteLoggato = sc.nextInt();
                     sc.nextLine();
 
@@ -231,31 +120,26 @@ public class Application {
 
                     if (utenteLoggato != null) {
                         System.out.println("Benvenuto " + utenteLoggato.getUtente().getNome() +". Cosa vuoi fare?");
-                        System.out.println("1 Visualizza abbonamenti attivi");
-                        System.out.println("2 Acquista nuovo abbonamento");
-                        System.out.println("3 Torna al menu ");
+                        System.out.println("1 Visualizza abbonamenti attivi.");
+                        System.out.println("2 Acquista nuovo abbonamento.");
+                        System.out.println("3 Torna al menu principale.");
 
                         int sceltaUtente = sc.nextInt();
                         sc.nextLine();
 
                         switch (sceltaUtente) {
                             case 1:
-                               /* mostra tutti abbonamneti di una persona
-
-                                if (abbonamentiUtente.isEmpty()) {
-                                    System.out.println("Nessun abbonamento attivo trovato.");
-                                } else {
-                                    System.out.println("Abbonamenti attivi:");
-                                    for (Abbonamento abbonamento : abbonamentiUtente) {
-                                        System.out.println(abbonamento);
-                                    }
-                                } */
+                               if(utenteLoggato.getListaDiAbbonamenti().isEmpty()){
+                                   System.err.println("Nessun abbonamento associato a questa tessera!");
+                               }else {
+                                   System.out.println(utenteLoggato.getListaDiAbbonamenti());
+                               }
                                 break;
 
                             case 2:
                                 System.out.println("Dove stai comprando il tuo abbonamento?");
                                 puntoVenditaDAO.mostraTuttiIRivenditori();
-                                System.out.println("Scegli l'id del punto vendita");
+                                System.out.println("Scegli l'id del punto vendita.");
                                 int idPuntoVendita = sc.nextInt();
                                 sc.nextLine();
 
@@ -270,12 +154,40 @@ public class Application {
                                 Tratta andata = trattaDAO.findById(idViaggioDaAggiungereXUtente);
                                 LocalDate oggi = LocalDate.now();
 
-                                Abbonamento newAbbonamento = new Abbonamento(oggi, puntoVenditaScelto, utenteLoggato, andata, TipoAbbonamento.MENSILE, true);
+                                System.out.println("Seleziona che tipo di abbonamento vuoi acquistare:");
+                                System.out.println("1: Settimanale");
+                                System.out.println("2: Mensile");
+                                System.out.println("3: Semestrale");
+                                int sceltaTipoAbb = sc.nextInt();
+                                TipoAbbonamento tipoAbbonamento = null;
+
+                                switch (sceltaTipoAbb){
+                                    case 1:
+                                        tipoAbbonamento = TipoAbbonamento.SETTIMANALE;
+                                        break;
+                                    case 2:
+                                        tipoAbbonamento = TipoAbbonamento.MENSILE;
+                                        break;
+                                    case 3:
+                                        tipoAbbonamento = TipoAbbonamento.SEMESTRALE;
+                                        break;
+                                    default:
+                                        System.err.println("Scelta non valida!");
+                                }
+                                System.out.println("Seleziona il tipo di viaggio: 1 solo andata, 2 andata e ritorno.");
+                                int sceltaAR = sc.nextInt();
+                                boolean andataRitorno = (sceltaAR == 2);
+
+                                String stringOpz = andataRitorno ? "Andata e Ritorno" : "sola Andata";
+                                Random rnd = new Random();
+                                System.out.println("Perfetto, per il tuo abbonamento " + stringOpz + " sono: " + rnd.nextInt(1,300) + "€");
+                                System.out.println("Come vuole pagare? 1 Carta, 2 Contanti.");
+                                int sceltaPag = sc.nextInt();
+                                Abbonamento newAbbonamento = new Abbonamento(oggi, puntoVenditaScelto, utenteLoggato, andata, tipoAbbonamento, andataRitorno);
                                 abbonamentoDAO.save(newAbbonamento);
 
-
-                                // dare la possibilita di scegliere il tipo di abbonamneto
-                                System.out.println("Perfetto, abbiamo creato un nuovo abbonamento " + TipoAbbonamento.MENSILE + " per la tratta " +
+                                // dare la possibilita di scegliere il tipo di abbonamneto --> FATTO
+                                System.out.println("Perfetto, abbiamo creato un nuovo abbonamento " + tipoAbbonamento + " per la " +
                                         trattaDAO.findById(idViaggioDaAggiungereXUtente) + ". Il tuo abbonamento ha id " + newAbbonamento.getId());
                                 break;
 
@@ -283,11 +195,11 @@ public class Application {
                                 break;
 
                             default:
-                                System.out.println("Scelta non valida. Torna al menu principale.");
+                                System.err.println("Scelta non valida. Torna al menu principale.");
                                 break;
                         }
                     } else {
-                        System.out.println("Utente non trovato. Torna al menu principale.");
+                        System.err.println("Utente non trovato. Torna al menu principale.");
                     }
                     break;
 
@@ -330,15 +242,14 @@ public class Application {
 
                     break;
                 case 5:
-                    System.out.println("Grazie per aver utilizzato Galileo Express aloaaaaaa!");
+                    System.out.println("Grazie per aver utilizzato Galileo Express!");
                     em.close();
                     emf.close();
                     System.exit(0);
 
                 default:
-                    System.out.println("Scelta non valida. Riprova.");
+                    System.err.println("Scelta non valida. Riprova.");
             }
         }
-
     }
 }

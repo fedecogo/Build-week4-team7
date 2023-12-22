@@ -13,10 +13,10 @@ public abstract class PuntoVendita {
     @Id
     @GeneratedValue
     private long id;
-    private String nome;
-    private String località;
+    protected String nome;
+    protected String località;
     @OneToMany(mappedBy = "puntoVendita")
-    private List<TitoloDiViaggio> listaTitoliDiViaggioEmessi = new ArrayList<>();
+    protected List<TitoloDiViaggio> listaTitoliDiViaggioEmessi = new ArrayList<>();
 
     public PuntoVendita() {
 

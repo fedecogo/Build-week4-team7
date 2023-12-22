@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "viaggi")
 public class Viaggio {
-
     @Id
     @GeneratedValue
     private long id;
@@ -18,9 +17,7 @@ public class Viaggio {
     @Column(name = "orario_arrivo")
     private LocalDateTime orarioArrivo;
     @Column(name = "durata_effettiva")
-    private String durataEffettivaInMinuti;
-    @Transient
-    private Duration durataEffettiva;
+    private int durataEffettiva;
     @Column(name = "numero_passeggeri")
     private int numeroPasseggeri = 0;
 
@@ -51,12 +48,8 @@ public class Viaggio {
         this.orarioArrivo = orarioArrivo;
         this.mezzo = mezzo;
         this.tratta = tratta;
-        this.durataEffettiva = Duration.between(orarioPartenza,orarioArrivo);
-        long ore = this.durataEffettiva.toHours();
-        long minuti = this.durataEffettiva.toMinutes() % 60;
-        this.durataEffettivaInMinuti = ore + " ore e " + minuti + " minuti";
+        this.durataEffettiva = (int) Duration.between(orarioPartenza,orarioArrivo).toMinutes();
     }
-
 
     public long getId() {
         return id;
@@ -78,11 +71,11 @@ public class Viaggio {
         this.orarioArrivo = orarioArrivo;
     }
 
-    public Duration getDurataEffettiva() {
+    public int getDurataEffettiva() {
         return durataEffettiva;
     }
 
-    public void setDurataEffettiva(Duration durataEffettiva) {
+    public void setDurataEffettiva(int durataEffettiva) {
         this.durataEffettiva = durataEffettiva;
     }
 

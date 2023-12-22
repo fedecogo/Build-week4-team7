@@ -48,6 +48,7 @@ public class TrattaDAO {
             System.err.println("La tratta con id " + id + " non è stata trovata!");
         }
     }
+
     public void mostraTutteLeTratte() {
         TypedQuery<Tratta> query = em.createQuery("SELECT t FROM Tratta t", Tratta.class);
         List<Tratta> tratte = query.getResultList();
