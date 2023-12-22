@@ -30,7 +30,82 @@ public class Application {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 
-        /*PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
+
+
+
+
+
+
+
+        /*
+         LocalDate aldosBirthday = DateParser.parseDateForItaly("28/09/1958");
+        LocalDate giovannisBirthday = DateParser.parseDateForItaly("20/02/1957");
+        LocalDate giacomosBirthday = DateParser.parseDateForItaly("26/04/1956");
+        LocalDate marinasBirthday = DateParser.parseDateForItaly("16/05/1963");
+
+        Utente aldo = new Utente("Aldo","Baglio",aldosBirthday);
+        Utente giovanni = new Utente("Giovanni","Storti",giovannisBirthday);
+        Utente giacomo = new Utente("Giacomo","Poretti",giacomosBirthday);
+        Utente marina = new Utente("Marina","Massironi",marinasBirthday);
+
+        utenteDao.save(aldo);
+        utenteDao.save(giovanni);
+        utenteDao.save(giacomo);
+        utenteDao.save(marina);
+
+        LocalDate marioBd = DateParser.parseDateForItaly("05/04/1980");
+        LocalDate luigiBd = DateParser.parseDateForItaly("22/02/1989");
+        LocalDate peachBd = DateParser.parseDateForItaly("07/11/1993");
+        LocalDate bowserBd = DateParser.parseDateForItaly("18/10/1975");
+
+        Utente mario = new Utente("Mario","Bros",marioBd);
+        Utente luigi = new Utente("Luigi","Bros",luigiBd);
+        Utente peach = new Utente("Peach","Toadstool",peachBd);
+        Utente bowser = new Utente("Bowser","Coopa",bowserBd);
+
+        utenteDao.save(mario);
+        utenteDao.save(luigi);
+        utenteDao.save(peach);
+        utenteDao.save(bowser);
+        LocalDate dataEmissione = LocalDate.now();
+        Utente aldo = utenteDao.findById(1);
+        Tessera tesseraAldo = new Tessera(dataEmissione, aldo);
+        tesseraDao.save(tesseraAldo);
+
+        Utente giovanni = utenteDao.findById(2);
+        Tessera tesseraGiovanni = new Tessera(dataEmissione, giovanni);
+        tesseraDao.save(tesseraGiovanni);
+
+        Utente giacomo = utenteDao.findById(3);
+        Tessera tesserag = new Tessera(dataEmissione, giacomo);
+        tesseraDao.save(tesserag);
+
+        Utente m = utenteDao.findById(4);
+        Tessera tesseram = new Tessera(dataEmissione, m);
+        tesseraDao.save(tesseram);
+
+        Utente mar = utenteDao.findById(5);
+        Tessera tesseraMar = new Tessera(dataEmissione, mar);
+        tesseraDao.save(tesseraMar);
+
+        Utente lu = utenteDao.findById(6);
+        Tessera tesseralu = new Tessera(dataEmissione, lu);
+        tesseraDao.save(tesseralu);
+
+        Utente p = utenteDao.findById(7);
+        Tessera tesserap = new Tessera(dataEmissione, p);
+        tesseraDao.save(tesserap);
+
+
+        Utente b = utenteDao.findById(8);
+        Tessera tessera = new Tessera(dataEmissione, b);
+        tesseraDao.save(tessera);
+
+
+
+        PuntoVendita tabacchi = puntoVenditaDAO.findById(17);
+
+
         PuntoVendita edicola = puntoVenditaDAO.findById(18);
         PuntoVendita infoP = puntoVenditaDAO.findById(19);
         PuntoVendita dist = puntoVenditaDAO.findById(20);
@@ -57,7 +132,7 @@ public class Application {
         abbonamentoDAO.save(abb3);
 
 
-         */
+
        MezzoDiTrasporto autobus = mezzoDiTrasportoDAO.findById(65);
        Tratta miTo = trattaDAO.findById(30);
        Viaggio viaggio1 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),autobus, miTo);
@@ -72,40 +147,75 @@ public class Application {
 
         MezzoDiTrasporto autobus2 = mezzoDiTrasportoDAO.findById(66);
         Tratta miPa = trattaDAO.findById(46);
-        Viaggio viaggio3 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),autobus2, miPa);
+        Viaggio viaggio3 = new Viaggio( LocalDate.now().atTime(5,30), LocalDate.now().atTime(19,39),autobus2, miPa);
         viaggioDAO.save(viaggio3);
 
         MezzoDiTrasporto treno0 = mezzoDiTrasportoDAO.findById(70);
         Tratta fiBo = trattaDAO.findById(36);
-        Viaggio viaggio4 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno0, fiBo );
+        Viaggio viaggio4 = new Viaggio( LocalDate.now().atTime(10,30), LocalDate.now().atTime(11,9),treno0, fiBo );
         viaggioDAO.save(viaggio4);
 
         MezzoDiTrasporto treno1 = mezzoDiTrasportoDAO.findById(71);
         Tratta roFi = trattaDAO.findById(37);
-        Viaggio viaggio5 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno1, roFi);
+        Viaggio viaggio5 = new Viaggio( LocalDate.now().atTime(11,30), LocalDate.now().atTime(13,34),treno1, roFi);
         viaggioDAO.save(viaggio5);
 
         MezzoDiTrasporto treno2 = mezzoDiTrasportoDAO.findById(72);
         Tratta leVe = trattaDAO.findById(50);
-        Viaggio viaggio6 = new Viaggio( LocalDate.now().atTime(7,30), LocalDate.now().atTime(9,39),treno2, leVe);
+        Viaggio viaggio6 = new Viaggio( LocalDate.now().atTime(3,30), LocalDate.now().atTime(22,39),treno2, leVe);
         viaggioDAO.save(viaggio6);
 
 
+*/
 
+        while (true) {
+            System.out.println("Cosa vuoi fare?");
+            System.out.println("1. Creare un abbonamento");
+            System.out.println("2. Comprare un biglietto");
+            System.out.println("3. Uscire");
 
+            int scelta = sc.nextInt();
+            sc.nextLine();
 
+            switch (scelta) {
+                case 1:
+                    System.out.println("Per poter creare un abbonamento è necessario registrarti");
+                    System.out.println("Dicci un po' di te, come ti chiami?");
+                    String nome = sc.nextLine();
+                    System.out.println("Inserisci il tuo cognome:");
+                    String cognome = sc.nextLine();
+                    System.out.println("In che giorno sei nato? (esempio 30/12/1900)");
+                    String dataNascita = sc.nextLine();
+                    LocalDate nuovoUtenteData = DateParser.parseDateForItaly(dataNascita);
+                    System.out.println(nuovoUtenteData);
+                    Utente nuovoUtente = new Utente(nome, cognome, nuovoUtenteData);
+                    utenteDao.save(nuovoUtente);
 
+                    LocalDate dataEmissione = LocalDate.now();
+                    Tessera tesseraNuova = new Tessera(dataEmissione, nuovoUtente);
+                    tesseraDao.save(tesseraNuova);
 
+                    System.out.println("Benvenuto "+ nome + " sei stato assegnato alla tessera con id "+ tesseraNuova.getId_tessera());
+                    System.out.println("Vuoi acquistare un abbonamento per un viaggio? si o no ");
+                    String scelta2 = sc.nextLine();
+                    if (scelta2 != "no"){
+                        System.out.println("Otiima ide eccco le tratte disponibili:");
+                    }
+                    break;
 
-// SOLO PER MEEEEEEEEEE FEDEEE            !!CANCELLARE I VIAGGI GIA ESISTENTI E RIEARI TUTTI QUANTI sisteemare le date in application e frae la stessa cosa di tratte per viaggi, duration in int e una roba che si chiama con la c che ora non mi ricordo
+                case 2:
+                    break;
 
+                case 3:
+                    System.out.println("Grazie per aver utilizzato Galileo Express aloaaaaaa!");
+                    em.close();
+                    emf.close();
+                    System.exit(0);
 
+                default:
+                    System.out.println("Scelta non valida. Riprova.");
+            }
+        }
 
-
-
-
-
-        em.close();
-        emf.close();
     }
 }
