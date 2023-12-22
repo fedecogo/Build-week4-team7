@@ -42,6 +42,8 @@ public class Admin {
                 System.out.println("1 Crea un nuovo viaggio");
                 System.out.println("2 Aggiungi un nuovo mezzo al parco mezzi");
                 System.out.println("3 Visualizza tutti gli utenti");
+                System.out.println("4 Metti un mezzo in manutenzione");
+
 
                int choice = sc.nextInt();
                 switch (choice) {
@@ -120,7 +122,17 @@ public class Admin {
 
 
                         break;
-
+                    case 4:
+                        System.out.println("Insercisci l'id del mezzo da mettere in manutenzione");
+                        int idMezzo = sc.nextInt();
+                        MezzoDiTrasporto mz = mezzoDiTrasportoDAO.findById(idMezzo);
+                        if(mz != null){
+                            mz.setInManutenzione();
+                            System.out.println("Il mezzo di tipo "+mz.getTipoMezzo()+" con id "+mz.getId()+" è stato correttamente messo in manutenzione");
+                        } else {
+                            System.err.println("Il mezzo con id "+idMezzo+" non è stato trovato");
+                        }
+                        break;
                     default:
                         System.out.println("Scelta non valida");
                 }
