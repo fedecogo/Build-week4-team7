@@ -4,6 +4,8 @@ import team_7.entities.PuntoVendita;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class PuntoVenditaDAO {
     private final EntityManager em;
@@ -41,6 +43,20 @@ public class PuntoVenditaDAO {
             System.out.println("Il punto vendita "+found.getNome()+" è stato correttamente rimosso");
         } catch(IllegalArgumentException | NullPointerException e){
             System.err.println("Il punto vendita con id "+id+" non è presente nel database");
+        }
+    }
+    public void mostraTuttiIRivenditori() {
+        TypedQuery<PuntoVendita> query = em.createQuery("SELECT p FROM PuntoVendita p", PuntoVendita.class);
+        List<PuntoVendita> puntiVendita = query.getResultList();
+
+        if (puntiVendita.isEmpty()) {
+            System.out.println("Non ci sono rivenditori disponibili al momento.");
+        } else {
+            System.out.println("Elenco di tutti i rivenditori:");
+            for (PuntoVendita puntoVendita : puntiVendita) {
+                System.out.println("ID: " + puntoVendita.getId() +
+                        ", Nome: " + puntoVendita.getNome());
+            }
         }
     }
 }

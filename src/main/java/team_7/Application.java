@@ -9,9 +9,7 @@ import team_7.functionalities.DateParser;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -170,16 +168,17 @@ public class Application {
 
         while (true) {
             System.out.println("Cosa vuoi fare?");
-            System.out.println("1. Creare un abbonamento");
-            System.out.println("2. Comprare un biglietto");
-            System.out.println("3. Uscire");
+            System.out.println("1 Creare una Tessera");
+            System.out.println("2  Fai log-in con l'id della tua tessera e acquista nuovi abbonamneti");
+            System.out.println("3 Comprare un biglietto");
+            System.out.println("4  Uscire");
 
             int scelta = sc.nextInt();
             sc.nextLine();
 
             switch (scelta) {
                 case 1:
-                    System.out.println("Per poter creare un abbonamento è necessario registrarti");
+                    System.out.println("Per poter creare una tessera è necessario registrarti");
                     System.out.println("Dicci un po' di te, come ti chiami?");
                     String nome = sc.nextLine();
                     System.out.println("Inserisci il tuo cognome:");
@@ -198,15 +197,100 @@ public class Application {
                     System.out.println("Benvenuto "+ nome + " sei stato assegnato alla tessera con id "+ tesseraNuova.getId_tessera());
                     System.out.println("Vuoi acquistare un abbonamento per un viaggio? si o no ");
                     String scelta2 = sc.nextLine();
-                    if (scelta2 != "no"){
-                        System.out.println("Otiima ide eccco le tratte disponibili:");
+                    if (scelta2.equals("si")) {
+                        System.out.println("Dove stai comprando il tuo abbonamento?");
+                        puntoVenditaDAO.mostraTuttiIRivenditori();
+                        System.out.println("Scelgi l'id del punto vendita");
+                        int idPuntoVendita = sc.nextInt();
+                        PuntoVendita puntoVenditaScelto = puntoVenditaDAO.findById(idPuntoVendita);
+                        System.out.println("Ottima idea ecco le tratte disponibili:");
+                        trattaDAO.mostraTutteLeTratte();
+                        System.out.println("Scegli l'id del tuo viaggio:");
+                        int idViaggioDaAggiungereXUtente =sc.nextInt();
+                        Tratta andata = trattaDAO.findById(idViaggioDaAggiungereXUtente);
+                        LocalDate oggi = LocalDate.now();
+
+                        // dare la possibilita di scegliere il tipo di abbonamneto
+                        Abbonamento newAbbonamento = new Abbonamento( oggi, puntoVenditaScelto, tesseraNuova, andata, TipoAbbonamento.MENSILE, true);
+                        abbonamentoDAO.save(newAbbonamento);
+                        System.out.println("Perfetto " + nome + "abbiamo creato il tuo abbonamento "+ TipoAbbonamento.MENSILE +" per la tratta "+ trattaDAO.findById(idViaggioDaAggiungereXUtente) + "il tuo abbonamneto ha id " + newAbbonamento.getId());
                     }
                     break;
 
                 case 2:
+                    System.out.println("Bentornato! Inserisci l'id della tua tessera per effettuare il login:");
+                    int idTesseraUtenteLoggato = sc.nextInt();
+                    sc.nextLine();
+
+                    Tessera utenteLoggato = tesseraDao.findById(idTesseraUtenteLoggato);
+
+                    if (utenteLoggato != null) {
+                        System.out.println("Benvenuto " + utenteLoggato.getUtente().getNome() +". Cosa vuoi fare?");
+                        System.out.println("1 Visualizza abbonamenti attivi");
+                        System.out.println("2 Acquista nuovo abbonamento");
+                        System.out.println("3 Torna al menu ");
+
+                        int sceltaUtente = sc.nextInt();
+                        sc.nextLine();
+
+                        switch (sceltaUtente) {
+                            case 1:
+                               /* mostra tutti abbonamneti di una persona
+
+                                if (abbonamentiUtente.isEmpty()) {
+                                    System.out.println("Nessun abbonamento attivo trovato.");
+                                } else {
+                                    System.out.println("Abbonamenti attivi:");
+                                    for (Abbonamento abbonamento : abbonamentiUtente) {
+                                        System.out.println(abbonamento);
+                                    }
+                                } */
+                                break;
+
+                            case 2:
+                                System.out.println("Dove stai comprando il tuo abbonamento?");
+                                puntoVenditaDAO.mostraTuttiIRivenditori();
+                                System.out.println("Scegli l'id del punto vendita");
+                                int idPuntoVendita = sc.nextInt();
+                                sc.nextLine();
+
+                                PuntoVendita puntoVenditaScelto = puntoVenditaDAO.findById(idPuntoVendita);
+
+                                System.out.println("Ecco le tratte disponibili:");
+                                trattaDAO.mostraTutteLeTratte();
+                                System.out.println("Scegli l'id del tuo viaggio:");
+                                int idViaggioDaAggiungereXUtente = sc.nextInt();
+                                sc.nextLine();
+
+                                Tratta andata = trattaDAO.findById(idViaggioDaAggiungereXUtente);
+                                LocalDate oggi = LocalDate.now();
+
+                                Abbonamento newAbbonamento = new Abbonamento(oggi, puntoVenditaScelto, utenteLoggato, andata, TipoAbbonamento.MENSILE, true);
+                                abbonamentoDAO.save(newAbbonamento);
+
+
+                                // dare la possibilita di scegliere il tipo di abbonamneto
+                                System.out.println("Perfetto, abbiamo creato un nuovo abbonamento " + TipoAbbonamento.MENSILE + " per la tratta " +
+                                        trattaDAO.findById(idViaggioDaAggiungereXUtente) + ". Il tuo abbonamento ha id " + newAbbonamento.getId());
+                                break;
+
+                            case 3:
+                                break;
+
+                            default:
+                                System.out.println("Scelta non valida. Torna al menu principale.");
+                                break;
+                        }
+                    } else {
+                        System.out.println("Utente non trovato. Torna al menu principale.");
+                    }
                     break;
 
                 case 3:
+                    System.out.println("Bentornato Dicci il tuo id per procedere");
+
+                    break;
+                case 4:
                     System.out.println("Grazie per aver utilizzato Galileo Express aloaaaaaa!");
                     em.close();
                     emf.close();
