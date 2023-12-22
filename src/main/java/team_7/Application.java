@@ -38,7 +38,7 @@ public class Application {
             System.out.println("1: Crea una Tessera.");
             System.out.println("2: Fai login con l'id della tua tessera e acquista nuovi abbonamenti.");
             System.out.println("3: Compra un biglietto.");
-            System.out.println("4: Timbra un biglietto.");
+            System.out.println("4: Sali a bordo.");
             System.out.println("5: Esci.");
 
             int scelta = sc.nextInt();
@@ -206,40 +206,101 @@ public class Application {
                 case 3:
 
                     //questo è da finire c'è qualche erroew nella riga commentata non sono sicurp sia un viaggio li ma una tratta o frose mi sbagli domani con pi chiareza faccimao tuuto
-                    System.out.println("Benvenuto Se vuoi comprare un biglitto ricorda che il biglietto non è nominativo ma posside un numero identificativo");
+
                     LocalDate oggi = LocalDate.now();
                     System.out.println("Dove stai comprando il tuo biglietto?");
                     puntoVenditaDAO.mostraTuttiIRivenditori();
                     System.out.println("Scegli l'id del punto vendita");
                     int idPuntoVendita = sc.nextInt();
                     PuntoVendita puntoVenditaScelto = puntoVenditaDAO.findById(idPuntoVendita);
-                    System.out.println("Tratta breve");
-                    System.out.println("Tratta media");
-                    System.out.println("Tratta lunga");
+                    System.out.println("Benvenuto presso " +puntoVenditaScelto.getNome());
+                    System.out.println("Scegli il tipo di biglietto: ");
+                    System.out.println("1: Tratta breve");
+                    System.out.println("2: Tratta media");
+                    System.out.println("3: Tratta lunga");
+                    int sceltaTipoTratta = sc.nextInt();
+                    TipoTratta tipoTratta = null;
                     // dare la possibilita di scegliere il tipo di abbonamneto
+                    switch (sceltaTipoTratta){
+                        case 1 ->tipoTratta = TipoTratta.BREVE;
+                        case 2 ->tipoTratta = TipoTratta.MEDIA;
+                        case 3 ->tipoTratta = TipoTratta.LUNGA;
+                        default -> System.err.println("Richiesta non valida!");
+                    }
 
-                    Biglietto nuovoBiglietto = new Biglietto(oggi,puntoVenditaScelto,TipoTratta.MEDIA);
+                    Biglietto nuovoBiglietto = new Biglietto(oggi,puntoVenditaScelto,tipoTratta);
                     bigliettoDAO.save(nuovoBiglietto);
-                    System.out.println("Hai acquistato un biglietto per tratta lunga , ecco l'id del biglietto :"+nuovoBiglietto.getId()+ " Non perderlo e ricordati di vidimarlo");
+                    System.out.println("Hai acquistato un biglietto per una tratta " + nuovoBiglietto.getTipoTratta() + " , ecco l'id del biglietto :"+nuovoBiglietto.getId()+ " Non perderlo e ricordati di vidimarlo!");
 
 
 
                     break;
                 case 4:
-                    System.out.println("Per vidimare un biglietto è necessario 1) inserire l'id del biglietto");
-                    int idBiglietto = sc.nextInt();
-                    Biglietto biglietto = bigliettoDAO.findById(idBiglietto);
-                    System.out.println("Perfetto adesso invece devi scegliere quale tratta effeturae con il tuo biglietto:");
+                    System.out.println("Su quale tratta ti trovi?");
                     trattaDAO.mostraTutteLeTratte();
                     System.out.println("Scegli l'id del tuo viaggio:");
-                    int idViaggioXbigliett = sc.nextInt();
-                    Viaggio viaggioBiglietto = viaggioDAO.findById(idViaggioXbigliett);
-                    LocalDateTime oggib = LocalDateTime.now();
-                    Vidimazione tmbro = new Vidimazione(oggib,viaggioBiglietto,biglietto);
-                    vidimazioneDAO.save(tmbro);
-                    System.out.println("Biglietto vidimato per la tratta che parte da " + viaggioBiglietto.getTratta().getPartenza() + "con arrivo alla stazione di " + viaggioBiglietto.getTratta().getArrivo()   );
+                    int sceltaTratta = sc.nextInt();
+                    Tratta myTratta = trattaDAO.findById(sceltaTratta);
 
-
+                    System.out.println("Sta passando il controllore, qual'è il tuo titolo di viaggio?");
+                    System.out.println("1: Biglietto");
+                    System.out.println("2: Abbonamento");
+                    int sceltaTipoViaggio = sc.nextInt();
+                    switch (sceltaTipoViaggio) {
+                        case 1 -> {
+                            System.out.println("Presenta l'id del tuo biglietto.");
+                            int idBiglietto = sc.nextInt();
+                            Biglietto biglietto = bigliettoDAO.findById(idBiglietto);
+                            if(biglietto.getStatoBiglietto() == StatoBiglietto.VIDIMATO){
+                                System.err.println("Il tuo biglietto non è valido, perchè è stato precedentemente vidimato!");
+                            }else {
+                                switch (myTratta.getTipoTratta()){
+                                    case BREVE -> {
+                                        biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
+                                        System.out.println("Biglietto vidimato, buon viaggio!");
+                                    }
+                                    case MEDIA ->  {
+                                        if (biglietto.getTipoTratta()==TipoTratta.BREVE){
+                                            System.err.println("Biglietto non valido!");
+                                        } else {
+                                            biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
+                                            System.out.println("Biglietto vidimato, buon viaggio!");
+                                        }
+                                    }
+                                    case LUNGA -> {
+                                        if (biglietto.getTipoTratta()==TipoTratta.LUNGA){
+                                            biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
+                                            System.out.println("Biglietto vidimato, buon viaggio!");
+                                        } else {
+                                            System.err.println("Biglietto non valido!");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        case 2 -> {
+                            System.out.println("Presenta l'id del tuo abbonamento.");
+                            int idAbbonamento = sc.nextInt();
+                            Abbonamento abbonamento = abbonamentoDAO.findById(idAbbonamento);
+                            if (abbonamento.getDataFine().isBefore(LocalDate.now())) {
+                                System.err.println("Il tuo abbonamento è scaduto!");
+                            }else{
+                                if(abbonamento.isAndataERitorno()){
+                                    if(abbonamento.getTratta() == myTratta || (abbonamento.getTratta().getPartenza() == myTratta.getArrivo() && abbonamento.getTratta().getArrivo() == myTratta.getPartenza())){
+                                        System.out.println("Il tuo abbonamento è valido, buon viaggio.");
+                                    }else {
+                                        System.err.println("Il tuo abbonamento non è valido per questa tratta!");
+                                    }
+                                }else{
+                                    if(abbonamento.getTratta() == myTratta){
+                                        System.out.println("Il tuo abbonamento è valido, buon viaggio!");
+                                    }else{
+                                        System.err.println("Il tuo abbonamento non è valido per questa tratta!");
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 5:
                     System.out.println("Grazie per aver utilizzato Galileo Express!");

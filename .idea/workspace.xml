@@ -7,14 +7,7 @@
     <list default="true" id="7c05a08c-41b4-4703-b7ea-bfeca6e3a258" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team_7/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/dao/PuntoVenditaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/PuntoVenditaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/dao/TrattaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/TrattaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/Abbonamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Abbonamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/DistributoreAutomatico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/DistributoreAutomatico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/PuntoVendita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/PuntoVendita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/RivenditoreAutorizzato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/RivenditoreAutorizzato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/Tessera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Tessera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/TitoloDiViaggio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/TitoloDiViaggio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/entities/Biglietto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/entities/Biglietto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

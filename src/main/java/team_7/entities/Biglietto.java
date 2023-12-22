@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Biglietto extends TitoloDiViaggio {
     @Column(name = "stato")
     @Enumerated(EnumType.STRING)
-    private StatoBiglietto statoBiglietto = StatoBiglietto.NON_VIDIMATO;
+    private StatoBiglietto statoBiglietto;
     @Enumerated(EnumType.STRING)
     private TipoTratta tipoTratta;
 
@@ -25,6 +25,7 @@ public class Biglietto extends TitoloDiViaggio {
     public Biglietto(LocalDate data_emissione,PuntoVendita puntoVendita,TipoTratta tipoTratta) {
         super(data_emissione,puntoVendita);
         this.tipoTratta = tipoTratta;
+        this.statoBiglietto = StatoBiglietto.NON_VIDIMATO;
 
     }
 
