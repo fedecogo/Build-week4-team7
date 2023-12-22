@@ -257,20 +257,20 @@ public class Application {
                                 switch (myTratta.getTipoTratta()){
                                     case BREVE -> {
                                         biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
-                                        System.out.println("Biglietto vidimato, buon viaggio!");
+                                        System.out.println("Biglietto valido, buon viaggio!");
                                     }
                                     case MEDIA ->  {
                                         if (biglietto.getTipoTratta()==TipoTratta.BREVE){
                                             System.err.println("Biglietto non valido!");
                                         } else {
                                             biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
-                                            System.out.println("Biglietto vidimato, buon viaggio!");
+                                            System.out.println("Biglietto valido, buon viaggio!");
                                         }
                                     }
                                     case LUNGA -> {
                                         if (biglietto.getTipoTratta()==TipoTratta.LUNGA){
                                             biglietto.setStatoBiglietto(StatoBiglietto.VIDIMATO);
-                                            System.out.println("Biglietto vidimato, buon viaggio!");
+                                            System.out.println("Biglietto valido, buon viaggio!");
                                         } else {
                                             System.err.println("Biglietto non valido!");
                                         }
