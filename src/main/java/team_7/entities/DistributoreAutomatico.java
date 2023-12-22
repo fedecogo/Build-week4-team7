@@ -33,8 +33,9 @@ public class DistributoreAutomatico extends PuntoVendita {
 
     @Override
     public String toString() {
-        return "DistributoreAutomatico{" +
-                "inServizio=" + inServizio +
+        return "Distributore Automatico{" +
+                "attualmente in Servizio=" + inServizio +
+                " nel " + super.località +
                 '}';
     }
 }

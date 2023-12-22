@@ -4,6 +4,8 @@ import team_7.entities.Tratta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class TrattaDAO {
     private final EntityManager em;
@@ -44,6 +46,22 @@ public class TrattaDAO {
             System.out.println("L'oggetto con tratta da " + found.getPartenza()+ " a " + found.getArrivo() + " è stato eliminato correttamente!");
         } catch (NullPointerException | IllegalArgumentException e){
             System.err.println("La tratta con id " + id + " non è stata trovata!");
+        }
+    }
+
+    public void mostraTutteLeTratte() {
+        TypedQuery<Tratta> query = em.createQuery("SELECT t FROM Tratta t", Tratta.class);
+        List<Tratta> tratte = query.getResultList();
+
+        if (tratte.isEmpty()) {
+            System.out.println("Non ci sono tratte disponibili al momento.");
+        } else {
+            System.out.println("Elenco di tutte le tratte:");
+            for (Tratta tratta : tratte) {
+                System.out.println("ID: " + tratta.getId() +
+                        ", Partenza: " + tratta.getPartenza() +
+                        ", Arrivo: " + tratta.getArrivo());
+            }
         }
     }
 }

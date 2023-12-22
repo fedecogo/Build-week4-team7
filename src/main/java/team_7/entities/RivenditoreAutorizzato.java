@@ -30,8 +30,9 @@ public class RivenditoreAutorizzato extends PuntoVendita {
 
     @Override
     public String toString() {
-        return "RivenditoreAutorizzato{" +
-                "tipoRivenditore=" + tipoRivenditore +
+        return "Rivenditore Autorizzato{" +
+                 super.nome +
+                " a " + super.località+
                 '}';
     }
 }

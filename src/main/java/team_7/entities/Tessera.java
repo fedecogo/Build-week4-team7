@@ -30,9 +30,13 @@ public class Tessera {
 
     }
     public Tessera( LocalDate dataEmissione, Utente utente){
-        this.dataEmissione = dataEmissione;
-        this.dataScadenza = dataEmissione.plusYears(1);
-        this.utente = utente;
+        if(utente.getDataDiNascita().isAfter(LocalDate.now().minusYears(18))){
+            this.dataEmissione = dataEmissione;
+            this.dataScadenza = dataEmissione.plusYears(1);
+            this.utente = utente;
+        }else {
+            System.err.println("Devi essere maggiorenne per poter fare una tessera!");
+        }
     }
 
     //gettere setter
