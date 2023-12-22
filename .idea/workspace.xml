@@ -7,8 +7,6 @@
     <list default="true" id="7c05a08c-41b4-4703-b7ea-bfeca6e3a258" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team_7/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/dao/PuntoVenditaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/PuntoVenditaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team_7/dao/TrattaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team_7/dao/TrattaDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,5 +69,31 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/team_7/Application.java</url>
+          <line>300</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/team_7/Application.java</url>
+          <line>338</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/team_7/Application.java</url>
+          <line>321</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/team_7/Application.java</url>
+          <line>316</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

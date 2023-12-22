@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Application {
@@ -27,6 +28,7 @@ public class Application {
         PuntoVenditaDAO puntoVenditaDAO = new PuntoVenditaDAO(em);
         TrattaDAO trattaDAO = new TrattaDAO(em);
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
+        VidimazioneDAO vidimazioneDAO = new VidimazioneDAO(em);
 
 
 
@@ -165,13 +167,16 @@ public class Application {
 
 
 */
+       // a monte potremmo chiede come suggeriva qualcuno ieri in call di fare la domanda iniziale se sei admin o user
+       //l'admin puo aggiungere mezzi , viaggi , rivenditori e vedere le info e gli storici???
 
         while (true) {
             System.out.println("Cosa vuoi fare?");
             System.out.println("1 Creare una Tessera");
-            System.out.println("2  Fai log-in con l'id della tua tessera e acquista nuovi abbonamneti");
+            System.out.println("2 Fai login con l'id della tua tessera e acquista nuovi abbonamneti");
             System.out.println("3 Comprare un biglietto");
-            System.out.println("4  Uscire");
+            System.out.println("4 Vidima un biglietto");
+            System.out.println("5 Uscire");
 
             int scelta = sc.nextInt();
             sc.nextLine();
@@ -218,7 +223,7 @@ public class Application {
                     break;
 
                 case 2:
-                    System.out.println("Bentornato! Inserisci l'id della tua tessera per effettuare il login:");
+                    System.out.println("Bentornato! Inserisci l'id della tua tessera per effettuare il login");
                     int idTesseraUtenteLoggato = sc.nextInt();
                     sc.nextLine();
 
@@ -287,10 +292,44 @@ public class Application {
                     break;
 
                 case 3:
-                    System.out.println("Bentornato Dicci il tuo id per procedere");
+
+                    //questo è da finire c'è qualche erroew nella riga commentata non sono sicurp sia un viaggio li ma una tratta o frose mi sbagli domani con pi chiareza faccimao tuuto
+                    System.out.println("Benvenuto Se vuoi comprare un biglitto ricorda che il biglietto non è nominativo ma posside un numero identificativo");
+                    LocalDate oggi = LocalDate.now();
+                    System.out.println("Dove stai comprando il tuo biglietto?");
+                    puntoVenditaDAO.mostraTuttiIRivenditori();
+                    System.out.println("Scegli l'id del punto vendita");
+                    int idPuntoVendita = sc.nextInt();
+                    PuntoVendita puntoVenditaScelto = puntoVenditaDAO.findById(idPuntoVendita);
+                    System.out.println("Tratta breve");
+                    System.out.println("Tratta media");
+                    System.out.println("Tratta lunga");
+                    // dare la possibilita di scegliere il tipo di abbonamneto
+
+                    Biglietto nuovoBiglietto = new Biglietto(oggi,puntoVenditaScelto,TipoTratta.MEDIA);
+                    bigliettoDAO.save(nuovoBiglietto);
+                    System.out.println("Hai acquistato un biglietto per tratta lunga , ecco l'id del biglietto :"+nuovoBiglietto.getId()+ " Non perderlo e ricordati di vidimarlo");
+
+
 
                     break;
                 case 4:
+                    System.out.println("Per vidimare un biglietto è necessario 1) inserire l'id del biglietto");
+                    int idBiglietto = sc.nextInt();
+                    Biglietto biglietto = bigliettoDAO.findById(idBiglietto);
+                    System.out.println("Perfetto adesso invece devi scegliere quale tratta effeturae con il tuo biglietto:");
+                    trattaDAO.mostraTutteLeTratte();
+                    System.out.println("Scegli l'id del tuo viaggio:");
+                    int idViaggioXbigliett = sc.nextInt();
+                    Viaggio viaggioBiglietto = viaggioDAO.findById(idViaggioXbigliett);
+                    LocalDateTime oggib = LocalDateTime.now();
+                    Vidimazione tmbro = new Vidimazione(oggib,viaggioBiglietto,biglietto);
+                    vidimazioneDAO.save(tmbro);
+                    System.out.println("Biglietto vidimato per la tratta che parte da " + viaggioBiglietto.getTratta().getPartenza() + "con arrivo alla stazione di " + viaggioBiglietto.getTratta().getArrivo()   );
+
+
+                    break;
+                case 5:
                     System.out.println("Grazie per aver utilizzato Galileo Express aloaaaaaa!");
                     em.close();
                     emf.close();
