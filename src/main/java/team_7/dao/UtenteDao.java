@@ -2,7 +2,11 @@ package team_7.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
 import team_7.entities.Utente;
+
+import java.util.List;
 
 
 public class UtenteDao {
@@ -45,5 +49,24 @@ public class UtenteDao {
         } catch (NullPointerException | IllegalArgumentException e){
             System.err.println("L' utente con id: " + id +  " non è stato trovato!");
         }
+    }
+
+    public List<Utente> mostraTuttiGliUtenti() {
+        TypedQuery<Utente> query = em.createQuery("SELECT u FROM Utente u", Utente.class);
+        List<Utente> utenti = query.getResultList();
+
+        if (utenti.isEmpty()) {
+            System.out.println("Non ci sono utenti registrati al momento.");
+        } else {
+            System.out.println("Elenco di tutti gli utenti:");
+            for (Utente utente : utenti) {
+                System.out.println("ID: " + utente.getId() +
+                        ", Nome: " + utente.getNome() +
+                        ", Cognome: " + utente.getCognome() +
+                        ",");
+            }
+        }
+
+        return utenti;
     }
 }

@@ -4,6 +4,8 @@ import team_7.entities.MezzoDiTrasporto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class MezzoDiTrasportoDAO {
     private final EntityManager em;
@@ -42,4 +44,21 @@ public class MezzoDiTrasportoDAO {
             System.err.println("Il mezzo con id "+id+" non è presente");
         }
     }
+    public void mostraTuttiIMezzi() {
+        TypedQuery<MezzoDiTrasporto> query = em.createQuery("SELECT m FROM MezzoDiTrasporto m", MezzoDiTrasporto.class);
+        List<MezzoDiTrasporto> mezzi = query.getResultList();
+
+        if (mezzi.isEmpty()) {
+            System.out.println("Il parco mezzi è vuoto.");
+        } else {
+            System.out.println("Elenco di tutti i mezzi nel parco mezzi:");
+            for (MezzoDiTrasporto mezzo : mezzi) {
+                System.out.println("ID: " + mezzo.getId() +
+                        ", Tipo: " + mezzo.getTipoMezzo() +
+                        ", Altri dettagli: " + mezzo.getTipoMezzo());
+                // Aggiungi altre informazioni del mezzo se necessario
+            }
+        }
+    }
+
 }
