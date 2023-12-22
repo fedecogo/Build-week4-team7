@@ -127,7 +127,8 @@ public class Admin {
                         int idMezzo = sc.nextInt();
                         MezzoDiTrasporto mz = mezzoDiTrasportoDAO.findById(idMezzo);
                         if(mz != null){
-                            mz.setInManutenzione();
+                            Manutenzione m = new Manutenzione(LocalDate.now(),"problema tecnico",mz);
+                            manutenzioneDAO.save(m);
                             System.out.println("Il mezzo di tipo "+mz.getTipoMezzo()+" con id "+mz.getId()+" è stato correttamente messo in manutenzione");
                         } else {
                             System.err.println("Il mezzo con id "+idMezzo+" non è stato trovato");
